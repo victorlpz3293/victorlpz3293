@@ -25,7 +25,7 @@ Con más de 6 años de trayectoria, combino la gestión estratégica de TI con e
 
 ### 📂 Proyectos Destacados
 
-* **Nica IT Solutions (NITSC):** IT Manager & Founder [Nica IT Solutions Center](https://www.nicaitsolutionscenter.net/)
+* **Nica IT Solutions Center (NITSC):** IT Manager & Founder [Nica IT Solutions Center](https://www.nicaitsolutionscenter.net/)
 * **NicaFlix:** Plataforma de streaming multiplataforma (Web, Roku, Android, iOS) diseñada bajo una arquitectura moderna de microservicios.
 * **HRMS & TowerViewer:** Sistemas avanzados para la gestión de talento humano y videovigilancia inteligente impulsada por IA.
 
