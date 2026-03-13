@@ -6,14 +6,6 @@ Con más de 6 años de trayectoria, combino la gestión estratégica de TI con e
 
 ---
 
-### 🚀 Áreas de Expertise
-
-* **Software Development:** Especializado en arquitecturas modernas con **Next.js, TypeScript y Python (Django/Flask)**. Desarrollo de aplicaciones multiplataforma con **Flutter**.
-* **Cloud & Infrastructure:** Experto en virtualización (**VMWare ESXi, Proxmox**) y despliegues robustos sobre **Linux (Ubuntu/Debian)** y **Docker**.
-* **Networking & Security:** Sólidos conocimientos en soluciones **Cisco, Mikrotik y FortiGate**. Analista SOC Nivel 1 con enfoque en Hacking Ético.
-
----
-
 ### 🛠️ Tech Stack
 
 **Programming & Frameworks**
@@ -49,7 +41,7 @@ Con más de 6 años de trayectoria, combino la gestión estratégica de TI con e
 ### 📫 Conectemos
 * 🌍 [Mi Sitio Web](https://www.victorlpz3293.me/)
 * 💼 [LinkedIn](https://linkedin.com/in/victorlpz3293)
-* 📧 [Enviame un correo](mailto:tu-correo@ejemplo.com)
+* 📧 [Enviame un correo](yo@victorlpz3293.me)
 
 *"Transformando código en soluciones y redes en conexiones seguras."*
 
