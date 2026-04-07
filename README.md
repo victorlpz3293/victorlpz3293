@@ -48,7 +48,7 @@ No pierdo tiempo reinventando la rueda. Utilizo la IA para acelerar el ciclo de 
 
 ### 📫 Hablemos de Innovación
 * 🌍 [victorlpz3293.me](https://www.victorlpz3293.me/)
-* 💼 [LinkedIn](https://linkedin.com/in/victorlpz3293)
+* 💼 [LinkedIn](https://www.linkedin.com/in/victorlpz329/)
 
 *"La verdadera maestría no está en saber cada comando, sino en saber cómo usar las mejores herramientas para construir el futuro."*
 
