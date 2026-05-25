@@ -46,11 +46,8 @@ No pierdo tiempo reinventando la rueda. Utilizo la IA para acelerar el ciclo de 
 ### 📊 Impacto en GitHub
 
 <p align="center">
-  <a href="https://github.com/anuraghazra/github-readme-stats">
-    <img src="https://github-readme-stats.vercel.app/api?username=victorlpz3293&show_icons=true&theme=tokyonight&v=1" alt="Victor's GitHub stats" />
-  </a>
-  <a href="https://github.com/anuraghazra/github-readme-stats">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=victorlpz3293&layout=compact&theme=tokyonight&v=1" alt="Top Langs" />
+  <a href="https://github.com/aaron-lewis/github-readme-streak-stats">
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=victorlpz3293&theme=tokyonight" alt="Victor's GitHub Streak" />
   </a>
 </p>
 
