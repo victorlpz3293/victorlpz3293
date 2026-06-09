@@ -1,49 +1,53 @@
-# Hi there, I'm Victor Lopez 👋
+# ⚡ Víctor López | Ingeniero en Telemática & IT Manager
 
-### IT Manager | AI-Driven Solutions Architect | Cybersecurity & Cloud Expert
+![Status](https://img.shields.io/badge/Status-100%25_Curiosity_%7C_99.9%25_Resilience-success?style=for-the-badge)
+![Location](https://img.shields.io/badge/Base_of_Operations-Ciudad_Sandino%2C_Nicaragua-blue?style=for-the-badge)
+![Website](https://img.shields.io/badge/Portfolio-victorlpz3293.me-orange?style=for-the-badge)
 
-Con más de **6 años de experiencia** en el sector tecnológico, me desempeño como **Responsable de TI en Kaitai Nicaragua S.A.** y soy el Fundador de **NITSC (Nica IT Solutions Center)**. Mi enfoque no es solo escribir código, sino diseñar y liderar infraestructuras críticas, ciberseguridad y desarrollo de software utilizando **Inteligencia Artificial** como motor de innovación y productividad empresarial.
+¡Hola! Soy Víctor 👋. Mi viaje en la tecnología no empezó en un entorno corporativo automatizado en la nube, sino desarmando equipos en Ciudad Sandino impulsado por una curiosidad puramente autodidacta. Hoy, combino esa misma curiosidad con la rigurosidad científica de la Ingeniería en Telemática (UNAN) para desempeñarme como **Responsable de TI en Kaitai Nicaragua S.A.** y liderar mi firma **NITSC**.
 
----
-
-### 🚀 Mi Enfoque: AI-First Development & DevOps
-
-No pierdo tiempo reinventando la rueda. Utilizo la IA para acelerar el ciclo de vida del desarrollo, permitiéndome enfocarme en lo que realmente importa: **la arquitectura, la alta disponibilidad y la entrega de valor.**
-
-* **Desarrollo Acelerado:** Orquestación de aplicaciones Full-Stack con **Next.js, Supabase, Python y Flutter**, optimizando el flujo de trabajo mediante herramientas de IA de vanguardia.
-* **Infraestructura Estratégica:** Implementación, clusterización y gestión de entornos virtualizados en **Proxmox, VMware ESXi** y despliegues nativos en contenedores **Docker**.
-* **Ciberseguridad y Redes:** Arquitectura, configuración y administración avanzada de defensa perimetral (**FortiGate, Cisco, MikroTik**) orientada a la eficiencia operativa y SOC.
+No soy solo un "entusiasta de la IA"; soy un arquitecto de infraestructura que entiende lo que ocurre en los cimientos reales: desde el enrutamiento físico de paquetes hasta la virtualización de alta disponibilidad.
 
 ---
 
-### 🛠️ Stack Tecnológico
+### 🚀 Filosofía de Ingeniería y Crecimiento
 
-**Software Development & Databases**
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/postgresql-4169e1?style=for-the-badge&logo=postgresql&logoColor=white)
+> *"La conectividad, la virtualización y la ciberseguridad no son capas aisladas, sino un tejido invisible y auto-sanable. El sistema perfecto es aquel que se recupera antes de que la pantalla del usuario parpadee."*
 
-**Infrastructure, Cloud & Security**
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+Mi trayectoria me ha llevado a escalar desde el Soporte Técnico en las trincheras hasta el diseño de arquitecturas robustas:
+* **Evolución Real:** De configurar hardware local a liderar clusters de Proxmox en producción, gestionar VMware ESXi y desplegar VPNs multisitio.
+* **Desarrollo + Infraestructura (Híbrido):** Integro mi profundo background de SysAdmin con el desarrollo de software Full-Stack (Next.js, Node) para crear automatizaciones que aceleran el negocio sin sacrificar la seguridad perimetral.
+
+---
+
+### 🛠️ Arsenal Tecnológico y Especialidad
+
+**Infraestructura, Redes & Ciberseguridad**
 ![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white)
-![Fortinet](https://img.shields.io/badge/Fortinet-C81326?style=for-the-badge&logo=fortinet&logoColor=white)
+![VMware](https://img.shields.io/badge/VMware-607078?style=for-the-badge&logo=vmware&logoColor=white)
 ![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
+![Fortinet](https://img.shields.io/badge/Fortinet-C81326?style=for-the-badge&logo=fortinet&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+**Desarrollo Full-Stack & Bases de Datos**
+![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
 ---
 
-### 📂 Ecosistema de Proyectos
+### 📂 Ecosistema de Proyectos (Laboratorio)
 
-* 🛡️ **NITSC (Nica IT Solutions Center):** IT Manager & Founder. El centro estratégico donde diseñamos e implementamos soluciones de TI, virtualización y ciberseguridad. [Visitar sitio web](https://www.nicaitsolutionscenter.net/)
-* 🎬 **NicaFlix:** Ecosistema de streaming multiplataforma (Web, Roku, Android, iOS) diseñado bajo una arquitectura moderna de microservicios. Demuestra cómo levantar arquitecturas complejas en tiempo récord usando IA.
-* 👁️ **HRMS & TowerViewer:** Sistemas integrales avanzados para la gestión de talento humano y plataformas de videovigilancia impulsadas por Inteligencia Artificial.
+* 🛡️ **NITSC (Nica IT Solutions Center):** Mi consultora estratégica donde diseñamos e implementamos soluciones corporativas de TI y ciberseguridad. [Visitar sitio web](https://www.nicaitsolutionscenter.net/)
+* 🧠 **Portafolio Bio-Interactivo (IA):** Mi espacio personal (`victorlpz3293.me`) que actúa como una Single Page Application (SPA) con un bot conversacional integrado que asume el rol de mi Asistente Biográfico.
+* 🎬 **NicaFlix:** Ecosistema de streaming multiplataforma (Web, Roku, Android, iOS) diseñado bajo una arquitectura moderna de microservicios.
+* 👁️ **HRMS & TowerViewer:** Sistemas integrales avanzados para la gestión de talento humano y plataformas de videovigilancia.
 
 ---
 
-### 📊 Impacto en GitHub
+### 📊 Mi Actividad y Resiliencia en Código
 
 <p align="center">
   <a href="https://github.com/aaron-lewis/github-readme-streak-stats">
@@ -53,11 +57,9 @@ No pierdo tiempo reinventando la rueda. Utilizo la IA para acelerar el ciclo de 
 
 ---
 
-### 📫 Hablemos de Innovación
+### 📫 Hablemos de Tecnología e Innovación
 
-Si buscas transformar tu infraestructura tecnológica o colaborar en un proyecto de alto nivel:
+Siempre estoy abierto a conectar con la comunidad técnica, charlar sobre arquitecturas Zero-Trust o posibles colaboraciones.
 
-* 🌍 Portfolio: [victorlpz3293.me](https://www.victorlpz3293.me/)
-* 💼 Connect: [LinkedIn](https://www.linkedin.com/in/victorlpz329/)
-
-> *"La verdadera maestría no está en saber cada comando, sino en saber cómo usar las mejores herramientas para construir el futuro."*
+* 🌐 **Interactúa con mi IA Biográfica:** [victorlpz3293.me](https://www.victorlpz3293.me/)
+* ✉️ **Bandeja de Entrada Directa:** victorlpz3293@gmail.com
