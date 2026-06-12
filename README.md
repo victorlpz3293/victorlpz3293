@@ -4,7 +4,7 @@
 ![Location](https://img.shields.io/badge/Base_of_Operations-Ciudad_Sandino%2C_Nicaragua-blue?style=for-the-badge)
 ![Website](https://img.shields.io/badge/Portfolio-victorlpz3293.me-orange?style=for-the-badge)
 
-¡Hola! Soy Víctor 👋. Mi viaje en la tecnología no empezó en un entorno corporativo automatizado en la nube, sino desarmando equipos en Ciudad Sandino impulsado por una curiosidad puramente autodidacta. Hoy, combino esa misma curiosidad con la rigurosidad científica de la Ingeniería en Telemática (UNAN) para desempeñarme como **Responsable de TI en Kaitai Nicaragua S.A.** y liderar mi firma **NITSC**.
+¡Hola! Soy Víctor 👋. Mi viaje en la tecnología no empezó en un entorno corporativo automatizado en la nube, sino desarmando equipos en Ciudad Sandino impulsado por una curiosidad puramente autodidacta. Hoy, combino esa misma curiosidad con la rigurosidad científica de la Ingeniería en Telemática (UNAN) para desempeñarme como **Responsable de TI en Kaitai Nicaragua S.A.** y liderar mi propia firma **Nica IT Solutions Center (NITSC)**.
 
 No soy solo un "entusiasta de la IA"; soy un arquitecto de infraestructura que entiende lo que ocurre en los cimientos reales: desde el enrutamiento físico de paquetes hasta la virtualización de alta disponibilidad.
 
@@ -40,10 +40,9 @@ Mi trayectoria me ha llevado a escalar desde el Soporte Técnico en las trincher
 
 ### 📂 Ecosistema de Proyectos (Laboratorio)
 
-* 🛡️ **NITSC (Nica IT Solutions Center):** Mi consultora estratégica donde diseñamos e implementamos soluciones corporativas de TI y ciberseguridad. [Visitar sitio web](https://www.nicaitsolutionscenter.net/)
-* 🧠 **Portafolio Bio-Interactivo (IA):** Mi espacio personal (`victorlpz3293.me`) que actúa como una Single Page Application (SPA) con un bot conversacional integrado que asume el rol de mi Asistente Biográfico.
-* 🎬 **NicaFlix:** Ecosistema de streaming multiplataforma (Web, Roku, Android, iOS) diseñado bajo una arquitectura moderna de microservicios.
-* 👁️ **HRMS & TowerViewer:** Sistemas integrales avanzados para la gestión de talento humano y plataformas de videovigilancia.
+* 🎬 **NicaFlix:** Ecosistema de streaming multiplataforma (Web, Android) diseñado bajo una arquitectura moderna de microservicios.
+* 🛡️ **HRMS & TowerViewer:** Sistemas integrales avanzados para la gestión de talento humano y plataformas de videovigilancia.
+* 🛍️ **Variedades Anita:** Un sistema eCommerce completo que gestiona pagos por depositos, tranferencias o pagos por Wallet. Optimizado con el uso de multimoneda y adactado a usar idioma Español o Ingles.
 
 ---
 
@@ -61,5 +60,5 @@ Mi trayectoria me ha llevado a escalar desde el Soporte Técnico en las trincher
 
 Siempre estoy abierto a conectar con la comunidad técnica, charlar sobre arquitecturas Zero-Trust o posibles colaboraciones.
 
-* 🌐 **Interactúa con mi IA Biográfica:** [victorlpz3293.me](https://www.victorlpz3293.me/)
-* ✉️ **Bandeja de Entrada Directa:** victorlpz3293@gmail.com
+* 🌐 **Interactúa con mi IA Biográfica: [Victor Lopez](https://www.victorlpz3293.me/)**
+* 👁️ **Ojea los servicio que estamos impulsando a travez de [NITSC](https://www.nicaitsolutionscenter.net/) (Nica IT Solutions Center)**
