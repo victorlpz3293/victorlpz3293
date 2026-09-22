@@ -377,6 +377,7 @@ export function render(perfil, opciones = {}) {
   <link rel="icon" type="image/svg+xml" href="assets/icono.svg">
   <link rel="preload" href="assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/estilo.css">
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 
 <body>
