@@ -174,14 +174,16 @@
       "tipo": "certificacion_examen_online",
       "fecha": "2026-06",
       "id_credencial": "78448473010803",
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "CCNA: Introducción a Redes (ITN)",
       "institucion": "Cisco Networking Academy — EDUTEK",
       "tipo": "curso",
       "fecha": "2026-04",
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Power BI",
@@ -189,7 +191,8 @@
       "tipo": "curso",
       "fecha": "2026-03",
       "horas": 50,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Bootcamp Fundamentos de Ciberseguridad",
@@ -197,14 +200,16 @@
       "tipo": "bootcamp",
       "fecha": "2026-03",
       "horas": 22,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Conceptos Básicos de Hardware",
       "institucion": "Cisco Networking Academy — EDUTEK",
       "tipo": "curso_corto",
       "fecha": "2025-02",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Certificado Profesional de Soporte de TI de Google (5 cursos)",
@@ -213,14 +218,16 @@
       "fecha": "2024-12",
       "id_credencial": "FBLB0R0RKKAY",
       "vence": false,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "CCNAv7: Introducción a Redes (ITN)",
       "institucion": "Cisco Networking Academy — Universidad Miguel Hernández (España)",
       "tipo": "curso",
       "fecha": "2023-12",
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Bootcamp Analista SOC Nivel 1",
@@ -228,7 +235,8 @@
       "tipo": "bootcamp",
       "fecha": "2022-09",
       "horas": 24,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Análisis Forense Digital en Sistemas Windows",
@@ -236,7 +244,8 @@
       "tipo": "curso",
       "fecha": "2022-08",
       "horas": 60,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Securitización de Equipos con las Bases de CIS Control",
@@ -245,7 +254,8 @@
       "fecha": "2022-06",
       "horas": 1,
       "verificacion": "Credly",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "ISEC Infosecurity Managua",
@@ -253,14 +263,16 @@
       "tipo": "evento",
       "fecha": "2022-06",
       "horas": 8,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Introduction to Packet Tracer",
       "institucion": "Cisco Networking Academy",
       "tipo": "curso_corto",
       "fecha": "2022-02",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Diplomado en Seguridad Informática Ágil",
@@ -269,7 +281,8 @@
       "fecha": "2022-01",
       "horas": 120,
       "id_credencial": "b8xzu5slcz",
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "IT Fundamentals",
@@ -277,7 +290,8 @@
       "tipo": "curso_corto",
       "fecha": "2020-11",
       "horas": 2,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Conviértete en especialista en soporte IT",
@@ -285,7 +299,8 @@
       "tipo": "ruta_aprendizaje",
       "fecha": "2020-10",
       "horas": 14,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Seguridad en Equipos Informáticos",
@@ -293,7 +308,8 @@
       "tipo": "curso_tecnico",
       "fecha": "2020-09",
       "horas": 180,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Gestión de los Servicios en Sistemas Informáticos",
@@ -301,14 +317,16 @@
       "tipo": "curso_tecnico",
       "fecha": "2020-09",
       "horas": 90,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Técnico en Informática (Ofimática)",
       "institucion": "Fundación Carlos Slim",
       "tipo": "curso",
       "fecha": "2020-06",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Administración de Servicios de Red",
@@ -316,28 +334,32 @@
       "tipo": "curso_tecnico",
       "fecha": "2020-03",
       "horas": 150,
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "NDG Linux Unhatched",
       "institucion": "Cisco Networking Academy",
       "tipo": "curso_corto",
       "fecha": "2019-10",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Cybersecurity Essentials",
       "institucion": "Cisco Networking Academy",
       "tipo": "curso",
       "fecha": "2019-03",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Introduction to Cybersecurity",
       "institucion": "Cisco Networking Academy",
       "tipo": "curso_corto",
       "fecha": "2019-03",
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "asistencia"
     },
     {
       "nombre": "Herramientas de Gestión en la Nube",
@@ -345,7 +367,8 @@
       "tipo": "curso_tecnico",
       "fecha": "2019-03",
       "horas": 40,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Iniciación al Hacking Ético",
@@ -354,7 +377,8 @@
       "fecha": "2018-12",
       "horas": 120,
       "calificacion": "99/100",
-      "destacar": true
+      "destacar": true,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Servicio de Red de Área Local",
@@ -362,7 +386,8 @@
       "tipo": "curso_tecnico",
       "fecha": "2018-09",
       "horas": 23,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Infraestructura de Red",
@@ -370,7 +395,8 @@
       "tipo": "curso_tecnico",
       "fecha": "2018-08",
       "horas": 75,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     },
     {
       "nombre": "Reparación de Equipos de Cómputo",
@@ -378,7 +404,8 @@
       "tipo": "curso_tecnico",
       "fecha": "2018-08",
       "horas": 150,
-      "destacar": false
+      "destacar": false,
+      "acreditacion": "evaluacion"
     }
   ],
   "formacion_agrupada": [
@@ -396,7 +423,8 @@
         "Marketing Digital con IA",
         "SEO para IA"
       ],
-      "tipo": "jornadas_asistencia"
+      "tipo": "jornadas_asistencia",
+      "acreditacion": "asistencia"
     }
   ],
   "habilidades": [

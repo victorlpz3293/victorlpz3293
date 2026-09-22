@@ -23,6 +23,10 @@
       "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$",
       "description": "AAAA o AAAA-MM"
     },
+    "acreditacion": {
+      "enum": ["evaluacion", "asistencia"],
+      "description": "evaluacion = hubo examen o trabajo calificado para obtener el certificado | asistencia = solo constancia de participación. Obligatorio: sin él, una formación nueva no se puede situar en la jerarquía y la validación falla."
+    },
     "evidencia": {
       "enum": ["produccion", "laboratorio", "formacion", "proyecto_propio"],
       "description": "produccion = empleo real | laboratorio = entorno controlado | formacion = solo estudiado | proyecto_propio = proyecto personal"
@@ -183,12 +187,13 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nombre", "institucion", "tipo", "fecha", "destacar"],
+        "required": ["nombre", "institucion", "tipo", "fecha", "destacar", "acreditacion"],
         "additionalProperties": false,
         "properties": {
           "nombre": { "$ref": "#/$defs/textoNoVacio" },
           "institucion": { "$ref": "#/$defs/textoNoVacio" },
           "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "acreditacion": { "$ref": "#/$defs/acreditacion" },
           "fecha": { "$ref": "#/$defs/mesOAnio" },
           "horas": { "type": "number", "exclusiveMinimum": 0 },
           "id_credencial": { "$ref": "#/$defs/textoNoVacio" },
@@ -204,13 +209,14 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nombre", "institucion", "tipo"],
+        "required": ["nombre", "institucion", "tipo", "acreditacion"],
         "additionalProperties": false,
         "properties": {
           "nombre": { "$ref": "#/$defs/textoNoVacio" },
           "institucion": { "$ref": "#/$defs/textoNoVacio" },
           "periodo": { "$ref": "#/$defs/textoNoVacio" },
           "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "acreditacion": { "$ref": "#/$defs/acreditacion" },
           "incluye": {
             "type": "array",
             "items": { "$ref": "#/$defs/textoNoVacio" }

@@ -3,7 +3,13 @@
  *
  * Todo texto pasa por esc(). No se emiten atributos style en línea: la CSP no los permite.
  */
-import { fecha, fechaCorta, esc } from '../scripts/lib/formato.mjs';
+import {
+  fecha,
+  fechaCorta,
+  esc,
+  NIVELES_FORMACION,
+  nivelesDeFormacion,
+} from '../scripts/lib/formato.mjs';
 
 const ICONOS = {
   whatsapp:
@@ -267,10 +273,11 @@ export function render(perfil, opciones = {}) {
               </li>`;
   };
 
-  const destacadas = formacion.filter((f) => f.destacar);
-  const resto = formacion.filter((f) => !f.destacar);
+  // Los tres niveles salen de la función compartida: la web, el CV, el README y el asistente
+  // usan exactamente el mismo criterio.
+  const niveles = nivelesDeFormacion(perfil);
 
-  const tarjetasDestacadas = destacadas
+  const tarjetasDestacadas = niveles.destacadas
     .map((f, i) => {
       const horas = f.horas ? ` · ${f.horas} h` : '';
       const credencial = f.id_credencial
@@ -290,7 +297,7 @@ export function render(perfil, opciones = {}) {
     })
     .join('\n            ');
 
-  const agrupada = (perfil.formacion_agrupada ?? [])
+  const agrupada = niveles.agrupada
     .map(
       (g) =>
         `<p class="text-xs text-slate-500 mt-4">${esc(g.nombre)} — ${esc(g.institucion)}${
@@ -504,25 +511,41 @@ export function render(perfil, opciones = {}) {
       <p class="etiqueta-seccion">Estudios</p>
       <h2 class="titulo-seccion">Educación y formación</h2>
 
-      <div class="mt-8 grid sm:grid-cols-2 gap-6">
+      <h3 class="text-base font-bold text-white mt-8">${esc(NIVELES_FORMACION.superior)}</h3>
+      <div class="mt-4 grid sm:grid-cols-2 gap-6">
             ${bloquesEducacion}
       </div>
 
-      <h3 class="text-base font-bold text-white mt-10">Formación destacada</h3>
+      <div class="flex flex-wrap items-baseline gap-x-3 mt-12">
+        <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.evaluacion)}</h3>
+        <span class="text-xs text-slate-500">${niveles.evaluacion.length} en total · hubo examen o trabajo calificado</span>
+      </div>
       <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             ${tarjetasDestacadas}
       </ul>
-
-      <details class="tarjeta p-6 mt-6">
-        <summary class="text-sm font-semibold text-white cursor-pointer">
-          Otras ${resto.length} formaciones
-        </summary>
+      ${
+        niveles.resto.length
+          ? `<div class="tarjeta p-6 mt-4">
+        <h4 class="text-sm font-semibold text-white">Otros ${niveles.resto.length} cursos con evaluación</h4>
         <ul class="mt-2">
-              ${resto.map(filaFormacion).join('\n              ')}
+              ${niveles.resto.map(filaFormacion).join('\n              ')}
         </ul>
-      </details>
+      </div>`
+          : ''
+      }
 
-      ${agrupada}
+      <!-- Nivel 3: visible, no escondido en un desplegable. Lo que lo distingue es el rótulo,
+           no que esté oculto. -->
+      <div class="flex flex-wrap items-baseline gap-x-3 mt-10">
+        <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.asistencia)}</h3>
+        <span class="text-xs text-slate-500">constancia de participación, sin evaluación</span>
+      </div>
+      <div class="tarjeta p-6 mt-4">
+        <ul>
+              ${niveles.asistencia.map(filaFormacion).join('\n              ')}
+        </ul>
+        ${agrupada}
+      </div>
 
       <div class="tarjeta p-6 mt-6">
         <h3 class="text-sm font-semibold text-white">Idiomas</h3>

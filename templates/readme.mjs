@@ -2,7 +2,7 @@
  * Plantilla del README.md del perfil de GitHub. Sigue la estructura y el tono de
  * docs/insumos/README.propuesta.md, pero el contenido sale de profile.json.
  */
-import { fechaCorta } from '../scripts/lib/formato.mjs';
+import { fechaCorta, NIVELES_FORMACION, nivelesDeFormacion } from '../scripts/lib/formato.mjs';
 
 /**
  * Tecnologías que llevan insignia. Solo se emiten para habilidades de producción:
@@ -86,9 +86,22 @@ export function render(perfil) {
 
   // --- Formación ---
 
-  const destacadas = formacion
-    .filter((f) => f.destacar)
-    .map((f) => `${f.nombre} (${f.institucion.split(' —')[0]})`)
+  const niveles = nivelesDeFormacion(perfil);
+  const enLinea = (lista) =>
+    lista.map((f) => `${f.nombre} (${f.institucion.split(' —')[0]})`).join(' · ');
+
+  // Nivel 1: los estudios formales. Faltaban en el README, aunque la web, el CV y el
+  // asistente sí los decían.
+  const educacionSuperior = niveles.superior
+    .map((e) => `- **${e.titulo}** — ${e.institucion} · ${e.estado}`)
+    .join('\n');
+
+  const conEvaluacion = enLinea(niveles.evaluacion);
+  const deAsistencia = [
+    enLinea(niveles.asistencia),
+    ...niveles.agrupada.map((g) => `${g.nombre} — ${g.institucion}`),
+  ]
+    .filter(Boolean)
     .join(' · ');
 
   return `# ${identidad.nombre}
@@ -131,9 +144,21 @@ ${todosPrivados ? '\n*Los repositorios de los proyectos son privados.*\n' : ''}
 
 **[${nitsc.nombre.split(' — ')[1] ?? nitsc.nombre}](${nitsc.web})** — ${nitsc.presentacion}
 
-## Formación destacada
+## ${NIVELES_FORMACION.superior}
 
-${destacadas}
+${educacionSuperior}
+
+## ${NIVELES_FORMACION.evaluacion}
+
+<sub>Formaciones con examen o trabajo calificado para obtener el certificado.</sub>
+
+${conEvaluacion}
+
+## ${NIVELES_FORMACION.asistencia}
+
+<sub>Constancia de participación, sin evaluación.</sub>
+
+${deAsistencia}
 
 ## Contacto
 

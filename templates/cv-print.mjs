@@ -5,14 +5,23 @@
  * Fondo claro a propósito: el PDF se imprime y se lee en visores. Del sitio conserva los
  * colores de acento, no el fondo oscuro.
  */
-import { fecha, fechaCorta, esc } from '../scripts/lib/formato.mjs';
+import {
+  fecha,
+  fechaCorta,
+  esc,
+  NIVELES_FORMACION,
+  nivelesDeFormacion,
+} from '../scripts/lib/formato.mjs';
 
 /**
- * Los tres proyectos que van al CV, en este orden. El resto vive en la web.
- * erp-hub queda fuera mientras esté oculto. variedades-hoannes sustituye a pasteleria,
- * que pasó a mostrar: false el 2026-09-22.
+ * Qué proyectos entran en el CV: los mismos que la web (mostrar: true), menos los de
+ * laboratorio. En un CV pesan los proyectos aplicados; los de laboratorio siguen visibles
+ * en la web, el README y el asistente, donde el rótulo los sitúa en su contexto.
+ *
+ * Es una regla, no una lista: un laboratorio nuevo queda fuera solo, y un proyecto aplicado
+ * nuevo entra solo. Si alguna vez no cupieran en dos páginas, build-pdf.mjs falla y lo dice.
  */
-const PROYECTOS_CV = ['core-erp-suite', 'variedades-hoannes', 'lab-openstack'];
+const vaAlCv = (p) => p.mostrar && p.evidencia !== 'laboratorio';
 
 export function render(perfil, opciones = {}) {
   // fuentesEnLinea: una instancia por peso, ya recortada a los caracteres de este CV.
@@ -72,17 +81,16 @@ export function render(perfil, opciones = {}) {
     })
     .join('\n      ');
 
-  const bloquesProyectos = PROYECTOS_CV.map((id) => proyectos.find((p) => p.id === id))
-    .filter((p) => p?.mostrar)
+  const bloquesProyectos = proyectos
+    .filter(vaAlCv)
     .map((p) => {
       const ia = p.desarrollo ? ' Desarrollado con asistencia de IA.' : '';
-      const lab = p.evidencia === 'laboratorio' ? ' Proyecto de laboratorio.' : '';
       return `<article>
         <div class="fila">
           <h3>${esc(p.nombre)}${p.marca ? ` (${esc(p.marca)})` : ''}</h3>
           <span class="periodo">${esc(p.estado)}</span>
         </div>
-        <p>${esc(p.descripcion)}${esc(ia)}${esc(lab)}</p>
+        <p>${esc(p.descripcion)}${esc(ia)}</p>
         <p class="stack">${esc(p.stack.join(' · '))}</p>
       </article>`;
     })
@@ -125,17 +133,29 @@ export function render(perfil, opciones = {}) {
     )
     .join('\n      ');
 
-  const destacadas = formacion
-    .filter((f) => f.destacar)
+  const niveles = nivelesDeFormacion(perfil);
+
+  const destacadas = niveles.destacadas
     .map((f) => {
       const horas = f.horas ? `, ${f.horas} h` : '';
       return `<li>${esc(f.nombre)} — ${esc(f.institucion)} (${esc(fecha(f.fecha))}${horas})</li>`;
     })
     .join('\n        ');
 
-  const agrupada = (perfil.formacion_agrupada ?? [])
-    .map((g) => `<p class="matiz">${esc(g.nombre)} — ${esc(g.institucion)}.</p>`)
-    .join('\n      ');
+  // En el CV, el resto de cada nivel va en una línea corrida: el espacio son dos páginas.
+  const enLinea = (lista) => lista.map((f) => `${f.nombre} (${f.institucion})`).join(' · ');
+
+  const otrosEvaluados = niveles.resto.length
+    ? `<p class="matiz"><strong>Otros cursos con evaluación:</strong> ${esc(enLinea(niveles.resto))}.</p>`
+    : '';
+
+  const asistencia = [
+    ...niveles.asistencia.map((f) => `${f.nombre} (${f.institucion})`),
+    ...niveles.agrupada.map((g) => `${g.nombre} — ${g.institucion}`),
+  ];
+  const lineaAsistencia = asistencia.length
+    ? `<p class="matiz"><strong>${esc(NIVELES_FORMACION.asistencia)}:</strong> ${esc(asistencia.join(' · '))}.</p>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -240,16 +260,21 @@ export function render(perfil, opciones = {}) {
 </section>
 
 <section>
-  <h2>Educación</h2>
+  <h2>${esc(NIVELES_FORMACION.superior)}</h2>
       ${bloquesEducacion}
 </section>
 
 <section>
-  <h2>Formación destacada</h2>
+  <h2>${esc(NIVELES_FORMACION.evaluacion)}</h2>
   <ul>
         ${destacadas}
   </ul>
-      ${agrupada}
+      ${otrosEvaluados}
+</section>
+
+<section>
+  <h2>${esc(NIVELES_FORMACION.asistencia)}</h2>
+      ${lineaAsistencia}
 </section>
 
 <section>

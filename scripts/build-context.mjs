@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { NIVELES_FORMACION, nivelesDeFormacion } from './lib/formato.mjs';
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), '..');
 const perfil = JSON.parse(readFileSync(join(raiz, 'data/profile.json'), 'utf8'));
@@ -62,24 +63,28 @@ bloques.push(
       .join('\n\n'),
 );
 
+// La formación se le entrega al modelo en los mismos tres niveles que ven la web, el CV y el
+// README, y con la diferencia explicada: así no puede presentar una charla como si fuera un
+// curso aprobado.
+const niveles = nivelesDeFormacion(perfil);
+const conHoras = (f) => `- ${f.nombre} — ${f.institucion} (${fecha(f.fecha)}${f.horas ? `, ${f.horas} h` : ''}).`;
+
 bloques.push(
-  'EDUCACIÓN\n' +
-    educacion.map((e) => `- ${e.titulo}, ${e.institucion}. Estado: ${e.estado}.`).join('\n'),
+  `${NIVELES_FORMACION.superior.toUpperCase()} (nivel 1: estudios formales)\n` +
+    niveles.superior.map((e) => `- ${e.titulo}, ${e.institucion}. Estado: ${e.estado}.`).join('\n'),
 );
 
-const destacadas = formacion.filter((f) => f.destacar);
 bloques.push(
-  'FORMACIÓN DESTACADA\n' +
-    destacadas
-      .map((f) => {
-        const horas = f.horas ? `, ${f.horas} h` : '';
-        return `- ${f.nombre} — ${f.institucion} (${fecha(f.fecha)}${horas}).`;
-      })
-      .join('\n') +
-    `\n\nAdemás cuenta con ${formacion.length - destacadas.length} formaciones complementarias.` +
-    (perfil.formacion_agrupada?.length
-      ? `\n${perfil.formacion_agrupada.map((g) => `- ${g.nombre} — ${g.institucion}.`).join('\n')}`
-      : ''),
+  `${NIVELES_FORMACION.evaluacion.toUpperCase()} (nivel 2: hubo examen o trabajo calificado para obtener el certificado)\n` +
+    niveles.evaluacion.map(conHoras).join('\n'),
+);
+
+bloques.push(
+  `${NIVELES_FORMACION.asistencia.toUpperCase()} (nivel 3: solo constancia de participación, sin evaluación)\n` +
+    [
+      ...niveles.asistencia.map(conHoras),
+      ...niveles.agrupada.map((g) => `- ${g.nombre} — ${g.institucion}.`),
+    ].join('\n'),
 );
 
 const porEvidencia = (tipo) => habilidades.filter((h) => h.evidencia === tipo);
@@ -190,7 +195,7 @@ const respuestas = [
   },
   {
     claves: ['certifica', 'curso', 'cursos', 'formacion', 'formación', 'diplomado'],
-    texto: `Entre su formación destacada: ${destacadas.slice(0, 4).map((f) => f.nombre).join('; ')}.`,
+    texto: `Entre sus cursos con evaluación: ${niveles.destacadas.slice(0, 4).map((f) => f.nombre).join('; ')}.`,
   },
   {
     claves: ['proyecto', 'proyectos', 'erp', 'desarrollo', 'programa', 'software', 'github'],
