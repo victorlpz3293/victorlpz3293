@@ -50,7 +50,7 @@ hace en local, que es donde se edita el JSON.
 | `public/assets/perfil.webp` y `og-victor-lopez.jpg` | `scripts/optimize-assets.mjs` | Sí |
 | `public/assets/fonts/*.woff2` | `scripts/fetch-fonts.mjs` | Sí |
 | `public/assets/preview.png` | `scripts/capture-preview.mjs` | Sí |
-| `public/cv-victor-lopez.pdf` | `scripts/build-pdf.mjs` | Sí |
+| `public/cv-victor-lopez.pdf` | `scripts/build-pdf.mjs` | No |
 | `README.md` | `scripts/build-readme.mjs` | Sí |
 
 Los archivos con sufijo `.generado.js` y `public/index.html` **no se editan a mano**: el siguiente
@@ -61,8 +61,11 @@ build los sobrescribe. Para cambiar su contenido se edita `data/profile.json` o 
 **En el build de Vercel.** El *Build Command* del proyecto es `npm run build`, que encadena:
 
 ```
-validate  →  build:context  →  build:css  →  build:site  →  check-claims
+validate  →  build:context  →  build:css  →  build:pdf  →  build:site  →  check-claims
 ```
+
+`build:pdf` va antes de `build:site`, que solo muestra el botón de descarga si el PDF existe, y
+antes de `check-claims`, que revisa el texto extraído del PDF.
 
 Se hace así, y no en un commit previo, por tres razones:
 
@@ -73,8 +76,9 @@ Se hace así, y no en un commit previo, por tres razones:
 3. **`check-claims` corre al final, sobre lo que realmente se va a publicar.** Si aparece una
    afirmación prohibida, el build falla y el despliegue no ocurre.
 
-El PDF y el README son la excepción: sí se versionan, porque GitHub necesita leerlos directamente
-del repositorio. Los genera un workflow de GitHub Actions, no Vercel.
+El README es la excepción: sí se versiona, porque GitHub lo lee directamente del repositorio para
+mostrarlo en el perfil. Lo regenera el workflow de GitHub Actions. Enlaza el PDF por su URL en el
+sitio, no por una ruta del repositorio.
 
 ### Trabajo local
 
@@ -109,14 +113,15 @@ declarar `style-src 'self'` y `font-src 'self'`.
 ### El CV en PDF
 
 `npm run build:pdf` genera `public/cv-victor-lopez.pdf` con Playwright, desde
-`templates/cv-print.mjs`. Es el único archivo PDF que `.gitignore` deja pasar.
+`templates/cv-print.mjs`. Ningún PDF se versiona: este lo produce cada build.
 
 - Una sola columna, sin imágenes ni iconos y con encabezados corrientes, para que un lector
   automático de currículums extraiga el texto sin perderse.
 - Fondo claro a propósito: el PDF se imprime. Del sitio conserva los colores de acento.
 - Del JSON toma la experiencia completa, tres proyectos, las habilidades de producción (más una
-  línea de laboratorio y otra de desarrollo asistido por IA), educación, formación destacada e
-  idiomas.
+  línea de laboratorio, otra de desarrollo asistido por IA y otra de lo estudiado sin experiencia
+  laboral), educación, formación destacada e idiomas. Los cuatro tipos de evidencia son los mismos
+  que muestra la web.
 - **El script falla si el resultado pasa de dos páginas.** Cuenta las páginas en el propio PDF, así
   que el límite no depende de que nadie se acuerde de comprobarlo.
 - Deja `build/cv-texto.txt` con el texto extraído del documento, que es lo que revisa
@@ -125,8 +130,21 @@ declarar `style-src 'self'` y `font-src 'self'`.
 Los márgenes se declaran **solo** en la llamada a `pdf()`, no en el `@page` del CSS. Si estuvieran
 en los dos sitios, Chromium los sumaría y el contenido no cabría en dos páginas.
 
-No forma parte de `npm run build` porque Vercel no trae los navegadores de Playwright. Lo ejecuta
-el workflow de GitHub Actions.
+**Por qué no se versiona.** Chromium no genera el mismo PDF dos veces: incrusta la fecha de
+creación y un identificador de documento. Mientras se versionaba, cada ejecución del workflow
+confirmaba un PDF "nuevo" aunque `profile.json` no hubiera cambiado. Ahora lo genera cada build,
+igual que `index.html`, y nunca puede quedar desincronizado con los datos.
+
+**Chromium en Vercel.** La imagen de build de Vercel es Amazon Linux 2023, y ahí el Chromium de
+Playwright no arranca: le faltan librerías del sistema (`libnss3`, `libnspr4`, `libgbm`, las de
+X11, entre otras). Se comprobó reproduciendo el build en el contenedor `amazonlinux:2023`, que es
+lo que la documentación de Vercel recomienda para simular su entorno. Por eso `vercel.json` define
+su propio `installCommand`: instala esas librerías con `dnf`, luego las dependencias con `npm ci`
+y después solo el `chromium-headless-shell` de Playwright. Si alguna vez el build de Vercel falla
+con `error while loading shared libraries`, falta una librería en esa lista.
+
+Si el PDF no se puede generar, el build falla y el despliegue no ocurre: Vercel sigue sirviendo la
+versión anterior, con su PDF. Es preferible a publicar un sitio sin CV.
 
 Para levantar el sitio y el asistente en local hace falta la CLI de Vercel, porque `/api/chat-cv`
 es una función serverless:
@@ -249,18 +267,23 @@ Request, con el workflow en verde.
 [`.github/workflows/verificar.yml`](../.github/workflows/verificar.yml) corre **sobre los Pull
 Requests hacia `main`**, nunca sobre `main` directamente. En cada ejecución:
 
-1. Valida `data/profile.json`.
-2. Genera el contexto del asistente, el CSS y la web.
-3. Regenera el CV en PDF (instalando Chromium) y el README.
-4. Ejecuta `check-claims` sobre todo lo generado, **incluido el texto extraído del PDF**.
-5. Si el README o el PDF cambiaron, hace commit **en la rama del Pull Request**.
+1. Instala Chromium con sus librerías del sistema.
+2. Regenera el README.
+3. Ejecuta `npm run build`, **el mismo comando que Vercel**: valida `data/profile.json`, genera el
+   contexto del asistente, el CSS, el PDF y la web, y termina con `check-claims` sobre todo lo
+   generado, **incluido el texto extraído del PDF** y el README.
+4. Si el README cambió, hace commit **en la rama del Pull Request**. El PDF no se confirma: no se
+   versiona.
 
-Nunca hace commit en `main`. Lo que se revisa en el PR es exactamente lo que se va a desplegar.
+Nunca hace commit en `main`. Como el workflow y Vercel ejecutan el mismo build, lo que pasa en el PR
+es lo que se va a desplegar. La única diferencia es cómo se instalan las librerías de Chromium:
+`apt` en Ubuntu (el workflow) y `dnf` en Amazon Linux (Vercel).
 
 Dos detalles que evitan que el workflow se muerda la cola:
 
-- **Filtra por rutas** (`on.push.paths`): solo se dispara si cambian `data/`, `templates/`,
-  `scripts/`, `src/`, los assets, el `package.json` o el propio workflow.
+- **Filtra por rutas** (`on.pull_request.paths`): solo se dispara si cambian `data/`,
+  `templates/`, `scripts/`, `src/`, los assets, el JS del navegador, `package.json`,
+  `vercel.json` o el propio workflow.
 - **Ignora sus propios commits**: el job lleva `if: github.actor != 'github-actions[bot]'` y sus
   commits van marcados con `[skip ci]`. Sin eso, cada commit del bot dispararía otra ejecución,
   que haría otro commit, indefinidamente.
@@ -287,8 +310,8 @@ El check `verificar` solo aparece en la lista después de que el workflow haya c
 vez; conviene abrir un Pull Request de prueba antes de fijar la regla.
 
 Si se marca *Do not allow bypassing the above settings*, la regla se aplica también al
-administrador. Conviene dejarlo desactivado: el workflow necesita empujar el commit del README y
-del PDF a la rama del Pull Request.
+administrador. Conviene dejarlo desactivado: el workflow necesita empujar el commit del README a
+la rama del Pull Request.
 
 ## Despliegue
 
@@ -302,10 +325,13 @@ build se detiene y no hay despliegue.
 | Nombre del proyecto | `victorlpz3293` |
 | Repositorio | `victorlpz3293/victorlpz3293` |
 | Framework Preset | Other |
-| Build Command | `npm run build` |
-| Output Directory | `public` |
-| Install Command | (por defecto) |
+| Build Command | `npm run build` (fijado en `vercel.json`) |
+| Output Directory | `public` (fijado en `vercel.json`) |
+| Install Command | fijado en `vercel.json`: instala las librerías de Chromium con `dnf`, luego `npm ci` y el navegador |
 | Versión de Node | 24.x |
+
+Los tres comandos viven en `vercel.json`, versionados, y prevalecen sobre lo que diga el panel de
+Vercel. Así un cambio en el build pasa por un Pull Request como cualquier otro.
 
 Variables de entorno, cargadas en **Production** y **Preview**:
 
@@ -325,7 +351,8 @@ dominio se mueve solo cuando el proyecto nuevo ya está probado.
 1. Crear un proyecto nuevo en Vercel conectado al repositorio `victorlpz3293`.
 2. Cargar `GEMINI_API_KEY` con una **clave nueva**. No reutilizar la del proyecto viejo: así ambos
    quedan independientes y la vieja se puede revocar sin riesgo.
-3. Configurar el *Build Command* como `npm run build` y el *Output Directory* como `public`.
+3. Dejar el *Build Command*, el *Install Command* y el *Output Directory* sin tocar en el panel:
+   los define `vercel.json`.
 4. Probar el sitio y el asistente en la URL `*.vercel.app` que asigna Vercel.
 5. Crear la regla de Firewall descrita arriba.
 6. Mover el dominio `victorlpz3293.me` del proyecto viejo al nuevo.

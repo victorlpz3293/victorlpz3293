@@ -113,6 +113,35 @@
     @apply inline-block text-xs px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20;
   }
 
+  .insignia-estudio {
+    @apply inline-block text-xs px-2.5 py-1 rounded-md bg-slate-500/10 text-slate-300 border border-slate-500/30;
+  }
+
+  /* --- Línea de tiempo de la experiencia --- */
+
+  .linea-tiempo {
+    @apply relative;
+  }
+
+  /* La línea vertical pasa por el centro de los círculos (2rem de ancho, así que 1rem). */
+  .linea-tiempo::before {
+    content: '';
+    @apply absolute left-4 top-6 bottom-6 w-px bg-slate-800;
+  }
+
+  .circulo-linea {
+    @apply absolute left-0 top-6 z-10 flex h-8 w-8 items-center justify-center rounded-full
+           border-4 border-marca-fondo bg-slate-800 text-xs font-bold text-slate-300;
+  }
+
+  .circulo-actual {
+    @apply bg-marca-cyan text-marca-hondo;
+  }
+
+  .etiqueta-fecha {
+    @apply whitespace-nowrap rounded-full bg-marca-cyan/10 px-2.5 py-1 text-xs font-medium text-marca-cyan;
+  }
+
   .boton-principal {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white
            bg-gradient-to-r from-marca-azul to-marca-cyan hover:opacity-90 transition-opacity;

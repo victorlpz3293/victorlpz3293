@@ -50,7 +50,7 @@ Empecé en la tecnología con un técnico medio en computación y desde 2017 tra
 |---|---|---|---|
 | **Core ERP Suite** | ERP SaaS multi-tenant para MiPyMEs de Nicaragua y Centroamérica, con lógica fiscal y laboral nicaragüense. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, PL/pgSQL) | Desarrollo avanzado, con CI en GitHub Actions |
 | **Core eCommerce Platform** | Plataforma para que pequeños emprendedores creen su propia tienda en línea. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, Auth) | En desarrollo (pausado) |
-| **Plantilla eCommerce para pastelerías** | Aplicación full-stack para pastelerías: catálogo administrable, personalizador de pasteles, reservas y panel administrativo protegido. Diseñada como base reutilizable para varios negocios cambiando marca, contenido y datos. | Next.js 15 (App Router), React 19, TypeScript | En desarrollo |
+| **Variedades Hoannes** | Tienda en línea del negocio familiar de mi esposa: tienda pública, panel de administración y API propia con catálogo, pedidos, cupones y envíos. Los pagos se reciben por depósito o transferencia bancaria y por la app Kash; la integración con Stripe está preparada, pero no activa. | Next.js 16, React 19, Redux Toolkit | En línea |
 | **Laboratorio de nube privada con OpenStack** | Nube privada con OpenStack desplegado con Kolla-Ansible sobre Ubuntu 24.04, con pfSense como firewall perimetral. Aloja VMs con VitalPBX, un servidor Wowza con OBS y gateway de streaming, y un sitio web en Docker que muestra la transmisión y permite llamadas a extensiones de VitalPBX. Los servicios se publican a Internet solo mediante Cloudflare Tunnel. | OpenStack 2026.1, Kolla-Ansible, Ubuntu 24.04 | En curso |
 
 *Los repositorios de los proyectos son privados.*

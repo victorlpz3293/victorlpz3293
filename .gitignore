@@ -13,9 +13,9 @@ node_modules/
 .env.*.local
 !.env.example
 
-# PDFs: solo se versiona el CV generado
+# PDFs: ninguno se versiona. El CV lo genera el build de Vercel, como el HTML, y los
+# certificados no se suben nunca (uno de ellos muestra un documento de identidad).
 *.pdf
-!public/cv-victor-lopez.pdf
 
 # Logs
 npm-debug.log*
