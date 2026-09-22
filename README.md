@@ -59,9 +59,22 @@ Empecé en la tecnología con un técnico medio en computación y desde 2017 tra
 
 **[Nica IT Solutions Center](https://www.nicaitsolutionscenter.net)** — Emprendimiento propio en etapa inicial orientado a soporte, consultoría, outsourcing de TI y desarrollo a medida.
 
-## Formación destacada
+## Educación superior
 
-ISO/IEC 27001:2022 Information Security Associate (SkillFront) · CCNA: Introducción a Redes (ITN) (Cisco Networking Academy) · Bootcamp Fundamentos de Ciberseguridad (Comunidad DOJO y WoSec Panamá) · Certificado Profesional de Soporte de TI de Google (5 cursos) (Google / Coursera) · CCNAv7: Introducción a Redes (ITN) (Cisco Networking Academy) · Bootcamp Analista SOC Nivel 1 (Comunidad DOJO y WoSec Panamá) · Análisis Forense Digital en Sistemas Windows (UCAPEM Group (Ecuador)) · Diplomado en Seguridad Informática Ágil (Instituto de Ciberdefensa) · Seguridad en Equipos Informáticos (INATEC) · Administración de Servicios de Red (INATEC) · Iniciación al Hacking Ético (Comunix (España))
+- **Ingeniería en Telemática** — Universidad Nacional Autónoma de Nicaragua (UNAN-Managua) · En curso — 4to año
+- **Técnico Medio en Computación y Diseño Gráfico** — Megabyte Service S.A. · Completado
+
+## Cursos con evaluación
+
+<sub>Formaciones con examen o trabajo calificado para obtener el certificado.</sub>
+
+ISO/IEC 27001:2022 Information Security Associate (SkillFront) · CCNA: Introducción a Redes (ITN) (Cisco Networking Academy, antes en 2023) · Power BI (Instituto Europeo de Posgrado) · Bootcamp Fundamentos de Ciberseguridad (Comunidad DOJO y WoSec Panamá) · Certificado Profesional de Soporte de TI de Google (5 cursos) (Google / Coursera) · Bootcamp Analista SOC Nivel 1 (Comunidad DOJO y WoSec Panamá) · Análisis Forense Digital en Sistemas Windows (UCAPEM Group (Ecuador)) · Diplomado en Seguridad Informática Ágil (Instituto de Ciberdefensa) · Seguridad en Equipos Informáticos (INATEC) · Gestión de los Servicios en Sistemas Informáticos (INATEC) · Técnico en Informática (Ofimática) (Fundación Carlos Slim) · Administración de Servicios de Red (INATEC) · Cybersecurity Essentials (Cisco Networking Academy) · Herramientas de Gestión en la Nube (INATEC) · Iniciación al Hacking Ético (Comunix (España)) · Servicio de Red de Área Local (INATEC) · Infraestructura de Red (INATEC) · Reparación de Equipos de Cómputo (INATEC)
+
+## Asistencia y participación
+
+<sub>Constancia de participación, sin evaluación.</sub>
+
+IA de 0 a Agentes (BIG school) · Ciberseguridad y Hacking Ético (BIG school) · Desarrollo con IA: de 0 a Producción (BIG school) · Conceptos Básicos de Hardware (Cisco Networking Academy) · Securitización de Equipos con las Bases de CIS Control (Capacitación USACH (Cybersecurity Week)) · ISEC Infosecurity Managua (I-SEC Information Security) · Introduction to Packet Tracer (Cisco Networking Academy) · IT Fundamentals (Udemy) · Conviértete en especialista en soporte IT (LinkedIn Learning) · NDG Linux Unhatched (Cisco Networking Academy) · Introduction to Cybersecurity (Cisco Networking Academy) · Jornadas de IA aplicada y ciberseguridad (5 jornadas de 6 h, certificados de asistencia) — BIG school
 
 ## Contacto
 

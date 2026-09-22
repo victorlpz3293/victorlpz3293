@@ -53,7 +53,18 @@ const REGLAS = {
     patrones: [/\bexpert[oa]s?\b/i, /primer\s+nivel/i, /validaciones\s+internacionales/i, /\bde\s+[ée]lite\b/i],
   },
   'Pentesting o hacking ético en producción': {
-    patrones: [/\bpentesting\b/i, /hacking\s+[ée]tico/i, /pruebas\s+de\s+penetraci[óo]n/i],
+    // El lookbehind excluye el título literal de una jornada de BIG school, cuyo certificado
+    // dice "Certificado de Asistencia": ahí "hacking ético" es el nombre de una formación.
+    //
+    // Va en el patrón y NO en excepciones a propósito. Las excepciones se evalúan sobre una
+    // ventana de ±250 caracteres, así que poner ahí el título habría eximido cualquier
+    // afirmación real que cayera cerca de él en la página. Comprobado: con la excepción por
+    // contexto, "apliqué hacking ético en la red corporativa" dejaba de detectarse.
+    patrones: [
+      /\bpentesting\b/i,
+      /(?<!ciberseguridad\s+y\s+)hacking\s+[ée]tico/i,
+      /pruebas\s+de\s+penetraci[óo]n/i,
+    ],
     excepciones: [/laboratorio/i, /entorno(s)?\s+controlado/i, /curso/i, /formaci[óo]n/i, /comunix/i, /bootcamp/i],
   },
   'OSPF en producción': {

@@ -23,6 +23,10 @@
       "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$",
       "description": "AAAA o AAAA-MM"
     },
+    "acreditacion": {
+      "enum": ["evaluacion", "asistencia"],
+      "description": "evaluacion = hubo examen o trabajo calificado para obtener el certificado | asistencia = solo constancia de participación. Obligatorio: sin él, una formación nueva no se puede situar en la jerarquía y la validación falla."
+    },
     "evidencia": {
       "enum": ["produccion", "laboratorio", "formacion", "proyecto_propio"],
       "description": "produccion = empleo real | laboratorio = entorno controlado | formacion = solo estudiado | proyecto_propio = proyecto personal"
@@ -183,19 +187,41 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nombre", "institucion", "tipo", "fecha", "destacar"],
+        "required": ["nombre", "institucion", "tipo", "fecha", "destacar", "acreditacion"],
         "additionalProperties": false,
         "properties": {
           "nombre": { "$ref": "#/$defs/textoNoVacio" },
           "institucion": { "$ref": "#/$defs/textoNoVacio" },
           "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "acreditacion": { "$ref": "#/$defs/acreditacion" },
           "fecha": { "$ref": "#/$defs/mesOAnio" },
           "horas": { "type": "number", "exclusiveMinimum": 0 },
           "id_credencial": { "$ref": "#/$defs/textoNoVacio" },
+          "instructor": {
+            "$ref": "#/$defs/textoNoVacio",
+            "description": "Quien imparte o dirige la formación. Sirve de referencia cuando el certificado no trae ID de credencial."
+          },
           "verificacion": { "$ref": "#/$defs/textoNoVacio" },
           "calificacion": { "$ref": "#/$defs/textoNoVacio" },
           "vence": { "type": "boolean" },
-          "destacar": { "type": "boolean" }
+          "destacar": { "type": "boolean" },
+          "ediciones_anteriores": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Veces anteriores en que se cursó lo mismo. La entrada principal es la edición vigente; validate.mjs exige que cada edición anterior tenga fecha previa.",
+            "items": {
+              "type": "object",
+              "required": ["nombre", "institucion", "fecha"],
+              "additionalProperties": false,
+              "properties": {
+                "nombre": { "$ref": "#/$defs/textoNoVacio" },
+                "institucion": { "$ref": "#/$defs/textoNoVacio" },
+                "fecha": { "$ref": "#/$defs/mesOAnio" },
+                "instructor": { "$ref": "#/$defs/textoNoVacio" },
+                "id_credencial": { "$ref": "#/$defs/textoNoVacio" }
+              }
+            }
+          }
         }
       }
     },
@@ -204,13 +230,14 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nombre", "institucion", "tipo"],
+        "required": ["nombre", "institucion", "tipo", "acreditacion"],
         "additionalProperties": false,
         "properties": {
           "nombre": { "$ref": "#/$defs/textoNoVacio" },
           "institucion": { "$ref": "#/$defs/textoNoVacio" },
           "periodo": { "$ref": "#/$defs/textoNoVacio" },
           "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "acreditacion": { "$ref": "#/$defs/acreditacion" },
           "incluye": {
             "type": "array",
             "items": { "$ref": "#/$defs/textoNoVacio" }

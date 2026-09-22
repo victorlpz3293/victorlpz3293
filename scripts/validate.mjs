@@ -84,6 +84,19 @@ for (const proyecto of perfil.proyectos ?? []) {
 const visibles = (perfil.proyectos ?? []).filter((p) => p.mostrar);
 if (visibles.length === 0) errores.push('proyectos: ninguno tiene mostrar: true');
 
+// Una edición anterior tiene que ser, literalmente, anterior. La entrada principal es la
+// vigente; si alguien invierte las fechas, la salida diría que lo viejo es lo actual.
+for (const f of perfil.formacion ?? []) {
+  for (const e of f.ediciones_anteriores ?? []) {
+    if (e.fecha >= f.fecha) {
+      errores.push(
+        `formacion/"${f.nombre}": la edición anterior "${e.nombre}" tiene fecha ${e.fecha}, ` +
+          `que no es anterior a ${f.fecha}`,
+      );
+    }
+  }
+}
+
 // El titular no puede contradecir la educación en curso.
 const enCurso = (perfil.educacion ?? []).some((e) => /en curso/i.test(e.estado));
 if (enCurso && /\bingeniero\b/i.test(perfil.identidad?.titular ?? '')) {

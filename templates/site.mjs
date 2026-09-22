@@ -3,7 +3,13 @@
  *
  * Todo texto pasa por esc(). No se emiten atributos style en línea: la CSP no los permite.
  */
-import { fecha, fechaCorta, esc } from '../scripts/lib/formato.mjs';
+import {
+  fecha,
+  fechaCorta,
+  esc,
+  NIVELES_FORMACION,
+  nivelesDeFormacion,
+} from '../scripts/lib/formato.mjs';
 
 const ICONOS = {
   whatsapp:
@@ -257,20 +263,53 @@ export function render(perfil, opciones = {}) {
     )
     .join('\n\n            ');
 
+  /**
+   * Ediciones anteriores de una misma formación: se cursó más de una vez. La entrada principal
+   * es la vigente; esto deja ver que hubo una anterior sin duplicar la tarjeta.
+   */
+  /**
+   * En las tarjetas de la cuadrícula va la versión compacta: son estrechas y un párrafo largo
+   * dispara su altura. La versión completa, con instructor, queda para la lista y el asistente.
+   *
+   * De la institución se toma lo que va tras el guion largo, que es la academia concreta
+   * ("Cisco Networking Academy — Universidad Miguel Hernández" → "Universidad Miguel Hernández"):
+   * el programa ya se ve en la línea principal, lo que distingue a la edición anterior es dónde.
+   */
+  const academiaDe = (nombre) =>
+    nombre.includes(' — ') ? nombre.split(' — ').slice(1).join(' — ') : nombre;
+
+  const ediciones = (f, compacto = false) =>
+    (f.ediciones_anteriores ?? [])
+      .map((e) => {
+        const texto = compacto
+          ? `Antes: ${esc(e.nombre.split(':')[0])} · ${esc(fechaCorta(e.fecha))} · ${esc(
+              academiaDe(e.institucion),
+            )}`
+          : `Antes cursado en ${esc(fecha(e.fecha))} — ${esc(e.institucion)}${
+              e.instructor ? ` · con ${esc(e.instructor)}` : ''
+            } (${esc(e.nombre)})`;
+        return `<p class="text-[11px] text-slate-600 mt-1">${texto}</p>`;
+      })
+      .join('');
+
   const filaFormacion = (f) => {
     //  : espacio de no separación, para que la "h" no quede sola en otra línea.
     const horas = f.horas ? ` · ${f.horas} h` : '';
     const credencial = f.id_credencial ? ` · ID ${esc(f.id_credencial)}` : '';
+    // Cuando no hay ID de credencial, quien imparte es la referencia del certificado.
+    const instructor = f.instructor ? ` · con ${esc(f.instructor)}` : '';
     return `<li class="py-3 border-b border-slate-800 last:border-0">
                 <p class="text-sm text-slate-200">${esc(f.nombre)}</p>
-                <p class="text-xs text-slate-500 mt-0.5">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}${credencial}</p>
+                <p class="text-xs text-slate-500 mt-0.5">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}${credencial}${instructor}</p>
+                ${ediciones(f)}
               </li>`;
   };
 
-  const destacadas = formacion.filter((f) => f.destacar);
-  const resto = formacion.filter((f) => !f.destacar);
+  // Los tres niveles salen de la función compartida: la web, el CV, el README y el asistente
+  // usan exactamente el mismo criterio.
+  const niveles = nivelesDeFormacion(perfil);
 
-  const tarjetasDestacadas = destacadas
+  const tarjetasDestacadas = niveles.destacadas
     .map((f, i) => {
       const horas = f.horas ? ` · ${f.horas} h` : '';
       const credencial = f.id_credencial
@@ -285,17 +324,20 @@ export function render(perfil, opciones = {}) {
                 <p class="text-sm font-semibold text-white leading-snug">${esc(f.nombre)}</p>
                 <p class="text-xs text-slate-500 mt-1">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}</p>
                 ${credencial}
+                ${ediciones(f, true)}
               </div>
             </li>`;
     })
     .join('\n            ');
 
-  const agrupada = (perfil.formacion_agrupada ?? [])
+  const agrupada = niveles.agrupada
     .map(
-      (g) =>
-        `<p class="text-xs text-slate-500 mt-4">${esc(g.nombre)} — ${esc(g.institucion)}${
-          g.periodo ? ` (${esc(g.periodo)})` : ''
-        }.</p>`,
+      (g) => `<div class="mt-4 pt-4 border-t border-slate-800">
+                <p class="text-sm text-slate-200">${esc(g.nombre)}</p>
+                <p class="text-xs text-slate-500 mt-0.5">${esc(g.institucion)}${
+                  g.periodo ? ` · ${esc(g.periodo)}` : ''
+                }</p>
+              </div>`,
     )
     .join('\n          ');
 
@@ -504,25 +546,46 @@ export function render(perfil, opciones = {}) {
       <p class="etiqueta-seccion">Estudios</p>
       <h2 class="titulo-seccion">Educación y formación</h2>
 
-      <div class="mt-8 grid sm:grid-cols-2 gap-6">
+      <h3 class="text-base font-bold text-white mt-8">${esc(NIVELES_FORMACION.superior)}</h3>
+      <div class="mt-4 grid sm:grid-cols-2 gap-6">
             ${bloquesEducacion}
       </div>
 
-      <h3 class="text-base font-bold text-white mt-10">Formación destacada</h3>
-      <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="flex flex-wrap items-baseline gap-x-3 mt-12">
+        <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.evaluacion)}</h3>
+        <span class="text-xs text-slate-500">${niveles.evaluacion.length} en total · hubo examen o trabajo calificado</span>
+      </div>
+      <!-- items-start: sin él, el grid estira las cuatro tarjetas de cada fila a la altura de
+           la más alta, y una sola con texto de más deja huecos en las otras tres. -->
+      <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
             ${tarjetasDestacadas}
       </ul>
+      ${
+        niveles.resto.length
+          ? `<details class="tarjeta p-6 mt-4">
+        <summary class="resumen-plegable">Otros ${niveles.resto.length} cursos con evaluación</summary>
+        <ul class="mt-2">
+              ${niveles.resto.map(filaFormacion).join('\n              ')}
+        </ul>
+      </details>`
+          : ''
+      }
 
-      <details class="tarjeta p-6 mt-6">
-        <summary class="text-sm font-semibold text-white cursor-pointer">
-          Otras ${resto.length} formaciones
+      <!-- Nivel 3: visible, no escondido en un desplegable. Lo que lo distingue es el rótulo,
+           no que esté oculto. -->
+      <div class="flex flex-wrap items-baseline gap-x-3 mt-10">
+        <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.asistencia)}</h3>
+        <span class="text-xs text-slate-500">constancia de participación, sin evaluación</span>
+      </div>
+      <details class="tarjeta p-6 mt-4">
+        <summary class="resumen-plegable">
+          ${niveles.asistencia.length + niveles.agrupada.reduce((n, g) => n + (g.incluye?.length ?? 1), 0)} cursos, talleres y jornadas
         </summary>
         <ul class="mt-2">
-              ${resto.map(filaFormacion).join('\n              ')}
+              ${niveles.asistencia.map(filaFormacion).join('\n              ')}
         </ul>
+        ${agrupada}
       </details>
-
-      ${agrupada}
 
       <div class="tarjeta p-6 mt-6">
         <h3 class="text-sm font-semibold text-white">Idiomas</h3>
