@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://victorlpz3293.me/schemas/profile.schema.json",
+  "title": "Perfil profesional de Victor R. López",
+  "type": "object",
+  "required": [
+    "meta",
+    "identidad",
+    "resumen",
+    "objetivo",
+    "experiencia",
+    "educacion",
+    "formacion",
+    "habilidades",
+    "proyectos",
+    "prohibido"
+  ],
+  "additionalProperties": false,
+
+  "$defs": {
+    "mesOAnio": {
+      "type": "string",
+      "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2]))?$",
+      "description": "AAAA o AAAA-MM"
+    },
+    "evidencia": {
+      "enum": ["produccion", "laboratorio", "formacion", "proyecto_propio"],
+      "description": "produccion = empleo real | laboratorio = entorno controlado | formacion = solo estudiado | proyecto_propio = proyecto personal"
+    },
+    "textoNoVacio": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repositorio": {
+      "type": "object",
+      "required": ["visibilidad"],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Solo para repos públicos. Las URL de los privados viven en _privado/notas.json: no se pueden abrir y solo revelarían el nombre."
+        },
+        "visibilidad": { "enum": ["publico", "privado"] },
+        "nota": { "$ref": "#/$defs/textoNoVacio" }
+      },
+      "if": { "properties": { "visibilidad": { "const": "privado" } } },
+      "then": { "not": { "required": ["url"] } }
+    }
+  },
+
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "actualizado", "reglas"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "actualizado": { "type": "string", "format": "date" },
+        "reglas": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/textoNoVacio" }
+        }
+      }
+    },
+
+    "identidad": {
+      "type": "object",
+      "required": ["nombre", "titular", "ubicacion", "email", "web", "linkedin", "github", "idiomas"],
+      "additionalProperties": false,
+      "properties": {
+        "nombre": { "$ref": "#/$defs/textoNoVacio" },
+        "nombre_completo": { "$ref": "#/$defs/textoNoVacio" },
+        "titular": { "$ref": "#/$defs/textoNoVacio" },
+        "titular_largo": { "$ref": "#/$defs/textoNoVacio" },
+        "ubicacion": { "$ref": "#/$defs/textoNoVacio" },
+        "email": { "type": "string", "format": "email" },
+        "telefono": { "$ref": "#/$defs/textoNoVacio" },
+        "web": { "type": "string", "format": "uri" },
+        "linkedin": { "type": "string", "format": "uri" },
+        "github": { "type": "string", "format": "uri" },
+        "disponibilidad": { "$ref": "#/$defs/textoNoVacio" },
+        "idiomas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["idioma", "nivel"],
+            "additionalProperties": false,
+            "properties": {
+              "idioma": { "$ref": "#/$defs/textoNoVacio" },
+              "nivel": { "$ref": "#/$defs/textoNoVacio" }
+            }
+          }
+        }
+      }
+    },
+
+    "resumen": {
+      "type": "object",
+      "required": ["corto", "largo"],
+      "additionalProperties": false,
+      "properties": {
+        "corto": { "$ref": "#/$defs/textoNoVacio" },
+        "origen": { "$ref": "#/$defs/textoNoVacio" },
+        "largo": { "$ref": "#/$defs/textoNoVacio" }
+      }
+    },
+
+    "objetivo": {
+      "type": "object",
+      "required": ["puestos"],
+      "additionalProperties": false,
+      "properties": {
+        "puestos": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/textoNoVacio" }
+        },
+        "diferenciadores": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/textoNoVacio" }
+        }
+      }
+    },
+
+    "experiencia": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "empresa", "cargo", "desde", "logros"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "empresa": { "$ref": "#/$defs/textoNoVacio" },
+          "cargo": { "$ref": "#/$defs/textoNoVacio" },
+          "ubicacion": { "$ref": "#/$defs/textoNoVacio" },
+          "contexto": { "$ref": "#/$defs/textoNoVacio" },
+          "desde": { "$ref": "#/$defs/mesOAnio" },
+          "hasta": {
+            "oneOf": [{ "$ref": "#/$defs/mesOAnio" }, { "type": "null" }],
+            "description": "null = puesto actual"
+          },
+          "logros": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["texto", "evidencia"],
+              "additionalProperties": false,
+              "properties": {
+                "texto": { "$ref": "#/$defs/textoNoVacio" },
+                "evidencia": { "$ref": "#/$defs/evidencia" },
+                "estado": { "enum": ["en_curso", "completado"] }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "educacion": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["institucion", "titulo", "estado"],
+        "additionalProperties": false,
+        "properties": {
+          "institucion": { "$ref": "#/$defs/textoNoVacio" },
+          "titulo": { "$ref": "#/$defs/textoNoVacio" },
+          "estado": { "$ref": "#/$defs/textoNoVacio" },
+          "desde": { "$ref": "#/$defs/mesOAnio" },
+          "hasta": { "$ref": "#/$defs/mesOAnio" },
+          "hasta_previsto": { "$ref": "#/$defs/mesOAnio" }
+        }
+      }
+    },
+
+    "formacion": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nombre", "institucion", "tipo", "fecha", "destacar"],
+        "additionalProperties": false,
+        "properties": {
+          "nombre": { "$ref": "#/$defs/textoNoVacio" },
+          "institucion": { "$ref": "#/$defs/textoNoVacio" },
+          "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "fecha": { "$ref": "#/$defs/mesOAnio" },
+          "horas": { "type": "number", "exclusiveMinimum": 0 },
+          "id_credencial": { "$ref": "#/$defs/textoNoVacio" },
+          "verificacion": { "$ref": "#/$defs/textoNoVacio" },
+          "calificacion": { "$ref": "#/$defs/textoNoVacio" },
+          "vence": { "type": "boolean" },
+          "destacar": { "type": "boolean" }
+        }
+      }
+    },
+
+    "formacion_agrupada": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nombre", "institucion", "tipo"],
+        "additionalProperties": false,
+        "properties": {
+          "nombre": { "$ref": "#/$defs/textoNoVacio" },
+          "institucion": { "$ref": "#/$defs/textoNoVacio" },
+          "periodo": { "$ref": "#/$defs/textoNoVacio" },
+          "tipo": { "$ref": "#/$defs/textoNoVacio" },
+          "incluye": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/textoNoVacio" }
+          }
+        }
+      }
+    },
+
+    "habilidades": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["categoria", "items", "evidencia"],
+        "additionalProperties": false,
+        "properties": {
+          "categoria": { "$ref": "#/$defs/textoNoVacio" },
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/textoNoVacio" }
+          },
+          "evidencia": { "$ref": "#/$defs/evidencia" }
+        }
+      }
+    },
+
+    "proyectos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "nombre", "descripcion", "estado", "stack", "mostrar"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "$ref": "#/$defs/textoNoVacio" },
+          "marca": { "$ref": "#/$defs/textoNoVacio" },
+          "contexto": { "$ref": "#/$defs/textoNoVacio" },
+          "descripcion": { "$ref": "#/$defs/textoNoVacio" },
+          "estado": { "$ref": "#/$defs/textoNoVacio" },
+          "stack": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/textoNoVacio" }
+          },
+          "destacable": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/textoNoVacio" }
+          },
+          "desarrollo": {
+            "$ref": "#/$defs/textoNoVacio",
+            "description": "Si el proyecto se desarrolló con IA, debe decirlo aquí"
+          },
+          "evidencia": { "$ref": "#/$defs/evidencia" },
+          "url": { "type": "string", "format": "uri" },
+          "repositorio": { "$ref": "#/$defs/repositorio" },
+          "estructura": { "$ref": "#/$defs/textoNoVacio" },
+          "mostrar": { "type": "boolean" }
+        }
+      }
+    },
+
+    "nitsc": {
+      "type": "object",
+      "required": ["nombre", "presentacion"],
+      "additionalProperties": false,
+      "properties": {
+        "nombre": { "$ref": "#/$defs/textoNoVacio" },
+        "presentacion": { "$ref": "#/$defs/textoNoVacio" },
+        "web": { "type": "string", "format": "uri" },
+        "servicios": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/textoNoVacio" }
+        }
+      }
+    },
+
+    "prohibido": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/textoNoVacio" },
+      "description": "Afirmaciones que nunca deben aparecer en ninguna salida. Cada entrada necesita una regla en scripts/check-claims.mjs"
+    },
+
+    "prohibido_privado": {
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Términos prohibidos que no pueden escribirse aquí porque este archivo es público (nombres de proyectos privados). Se guarda solo la huella SHA-256 del término normalizado; check-claims la compara contra las palabras de cada salida.",
+      "items": {
+        "type": "object",
+        "required": ["etiqueta", "sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "etiqueta": {
+            "$ref": "#/$defs/textoNoVacio",
+            "description": "Descripción neutra, para los mensajes de error"
+          },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    }
+  }
+}

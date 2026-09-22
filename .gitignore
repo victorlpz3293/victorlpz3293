@@ -1,0 +1,41 @@
+# Material privado (no se publica nunca)
+_privado/
+
+# Dependencias
+node_modules/
+
+# Vercel
+.vercel/
+
+# Variables de entorno (solo se versiona la plantilla)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# PDFs: solo se versiona el CV generado
+*.pdf
+!public/cv-victor-lopez.pdf
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Build / cache / temporales
+dist/
+build/
+coverage/
+*.tmp
+
+# Archivos generados en el build de Vercel desde data/profile.json.
+# No se versionan: así nunca quedan desincronizados con los datos.
+*.generado.js
+public/index.html
+public/css/estilo.css

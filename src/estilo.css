@@ -1,0 +1,163 @@
+/* Fuentes servidas desde el propio dominio: la web no depende de Google Fonts
+   y la CSP puede prohibir cualquier origen externo. Variables, así que un solo
+   archivo por familia cubre todos los pesos. Descárgalas con `npm run fonts`. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/inter-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url('../assets/fonts/outfit-variable.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Todo estilo propio vive aquí. La CSP no permite atributos style en línea. */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-marca-fondo text-slate-300 font-sans overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-titulo tracking-tight;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-marca-hondo;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-700;
+  }
+
+  /* Ancla bajo la barra fija al saltar de sección. */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-marca-cyan ring-offset-2 ring-offset-marca-fondo;
+  }
+}
+
+@layer components {
+  .contenedor {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .tarjeta {
+    @apply bg-slate-900/60 border border-slate-800 rounded-2xl;
+  }
+
+  .etiqueta-seccion {
+    @apply text-xs font-bold uppercase tracking-widest text-marca-cyan;
+  }
+
+  .titulo-seccion {
+    @apply text-2xl sm:text-3xl font-bold text-white mt-3;
+  }
+
+  .insignia {
+    @apply inline-block text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300;
+  }
+
+  .insignia-estado {
+    @apply inline-block text-xs px-2.5 py-1 rounded-md bg-marca-cyan/10 text-marca-cyan border border-marca-cyan/20;
+  }
+
+  .insignia-ia {
+    @apply inline-block text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/20;
+  }
+
+  .insignia-lab {
+    @apply inline-block text-xs px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20;
+  }
+
+  .boton-principal {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-marca-azul to-marca-cyan hover:opacity-90 transition-opacity;
+  }
+
+  .boton-secundario {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-white
+           bg-slate-800 border border-slate-700 hover:bg-slate-700 transition-colors;
+  }
+
+  .enlace-nav {
+    @apply text-sm text-slate-400 hover:text-white transition-colors;
+  }
+}
+
+/* --- Asistente --- */
+
+.user-msg {
+  @apply bg-marca-azul text-white px-3.5 py-2.5 rounded-xl rounded-br-sm ml-auto max-w-[85%] text-sm leading-relaxed;
+}
+
+.ai-msg {
+  @apply bg-slate-800/70 text-slate-100 border border-white/5 px-4 py-3 rounded-xl rounded-bl-sm mr-auto max-w-[85%] text-sm leading-relaxed;
+}
+
+.ai-msg b {
+  @apply text-marca-cyan font-semibold;
+}
+
+.chat-cargando {
+  @apply text-slate-400 animate-pulse;
+}
+
+.chat-nota {
+  @apply block mt-1.5 text-[10px] text-amber-400/80;
+}
+
+.chat-acciones {
+  @apply flex flex-col gap-2 mt-2;
+}
+
+#chat-input:disabled,
+#send-chat:disabled {
+  @apply opacity-40 cursor-not-allowed;
+}
+
+#send-chat:disabled {
+  @apply bg-slate-700 bg-none;
+}
+
+.chat-boton-wa {
+  @apply block text-center px-4 py-2.5 rounded-xl bg-green-600 hover:bg-green-500 text-white text-sm font-semibold transition-colors;
+}
+
+.chat-boton-mail {
+  @apply block text-center px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-semibold transition-colors;
+}
+
+@media print {
+  .no-imprimir {
+    display: none !important;
+  }
+}

@@ -1,0 +1,853 @@
+{
+  "meta": {
+    "version": "3.2.0",
+    "actualizado": "2026-09-22",
+    "reglas": [
+      "Este archivo es la ÚNICA fuente de verdad. Web, PDF, README y asistente IA se generan o leen desde aquí.",
+      "Ninguna IA puede agregar datos que no estén aquí. Si falta algo, se agrega primero en este archivo y lo valida Victor.",
+      "evidencia: produccion = hecho en un empleo real | laboratorio = entorno controlado/académico | formacion = solo estudiado.",
+      "Las afirmaciones listadas en 'prohibido' nunca deben aparecer en ninguna salida.",
+      "Este archivo es público. El material editorial y los proyectos privados viven en _privado/notas.json."
+    ]
+  },
+  "identidad": {
+    "nombre": "Victor R. López",
+    "nombre_completo": "Victor Rafael López",
+    "titular": "Responsable de TI | Infraestructura, Virtualización y Redes | Ciberseguridad",
+    "titular_largo": "Responsable de TI en Kaitai Nicaragua | Infraestructura, Virtualización y Redes | Ciberseguridad | Estudiante de Ing. en Telemática (UNAN)",
+    "ubicacion": "Ciudad Sandino, Managua, Nicaragua",
+    "email": "victorlpz3293@gmail.com",
+    "telefono": "+505 8133-6115",
+    "web": "https://www.victorlpz3293.me",
+    "linkedin": "https://www.linkedin.com/in/victorlpz3293/",
+    "github": "https://github.com/victorlpz3293",
+    "idiomas": [
+      {
+        "idioma": "Español",
+        "nivel": "Nativo"
+      },
+      {
+        "idioma": "Inglés",
+        "nivel": "Básico–intermedio (lectura técnica)"
+      }
+    ],
+    "disponibilidad": "Presencial o híbrido en Managua; abierto a remoto"
+  },
+  "resumen": {
+    "corto": "Responsable de TI con más de 7 años de experiencia en soporte, infraestructura y redes corporativas. Estudiante de Ingeniería en Telemática (UNAN, 4to año).",
+    "origen": "Empecé en la tecnología con un técnico medio en computación y desde 2017 trabajo en TI. Pasé del soporte técnico en servicios de outsourcing a liderar el área de TI de una empresa.",
+    "largo": "Responsable de TI con más de 7 años de experiencia en soporte, infraestructura y redes corporativas. He consolidado servidores físicos en plataformas virtualizadas, segmentado redes corporativas y administrado servicios de directorio, telefonía IP, almacenamiento y respaldos. Hoy lidero el área de TI de Kaitai Nicaragua, donde implementé la seguridad perimetral, la plataforma de virtualización y la autenticación centralizada de los usuarios. Estudiante de 4to año de Ingeniería en Telemática en la UNAN. Bajo la marca NITSC desarrollo proyectos propios de software con asistencia de IA."
+  },
+  "objetivo": {
+    "puestos": [
+      "Jefe / Responsable de TI",
+      "Administrador de Sistemas (SysAdmin)",
+      "Especialista en Infraestructura TI"
+    ],
+    "diferenciadores": [
+      "Redes y seguridad perimetral (FortiGate, VLANs)",
+      "Desarrollo y despliegue de soluciones internas asistido por IA"
+    ]
+  },
+  "experiencia": [
+    {
+      "id": "kaitai",
+      "empresa": "Kaitai Nicaragua S.A.",
+      "cargo": "Responsable de TI",
+      "ubicacion": "Managua",
+      "desde": "2025-09",
+      "hasta": null,
+      "logros": [
+        {
+          "texto": "Lidero el área de TI: planificación del presupuesto, gestión de proveedores tecnológicos y mantenimiento preventivo y correctivo de la infraestructura.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Implementé y administro la seguridad perimetral de la red corporativa.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Implementé la plataforma de virtualización y los servicios de directorio de la empresa.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Centralicé la autenticación de los usuarios mediante inicio de sesión único (SSO).",
+          "evidencia": "produccion"
+        }
+      ]
+    },
+    {
+      "id": "megacom",
+      "empresa": "Mega Comunicaciones S.A. (MEGACOM)",
+      "cargo": "Oficial de TI",
+      "ubicacion": "Managua",
+      "desde": "2022-10",
+      "hasta": "2025-06",
+      "logros": [
+        {
+          "texto": "Administré la infraestructura de TI de la empresa: servidores, red, telefonía IP, respaldos y seguridad perimetral.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Lideré un proyecto de modernización que consolidó los servidores físicos en una plataforma virtualizada.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Planifiqué y ejecuté migraciones de servicios críticos a entornos virtuales, con ventanas de mantenimiento planificadas y mínimo impacto en la operación.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Implementé segmentación de red, almacenamiento centralizado con respaldo externo y la migración de la plataforma de telefonía IP.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Di soporte a la infraestructura de TI que sostiene los servicios de radiocomunicación de la empresa.",
+          "evidencia": "produccion"
+        }
+      ]
+    },
+    {
+      "id": "hermoso-vigil",
+      "empresa": "Hermoso y Vigil S.A.",
+      "cargo": "Ejecutivo de Servicio Técnico",
+      "ubicacion": "Managua",
+      "desde": "2020-12",
+      "hasta": "2022-10",
+      "logros": [
+        {
+          "texto": "Instalé, configuré y di mantenimiento a equipos multifuncionales de impresión en red, y capacité a los usuarios.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Implementé soluciones de control de costos de impresión para clientes corporativos.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Brindé soporte técnico remoto y presencial.",
+          "evidencia": "produccion"
+        }
+      ]
+    },
+    {
+      "id": "ipesa",
+      "empresa": "IPESA de Nicaragua",
+      "cargo": "Técnico de Soporte TI",
+      "ubicacion": "Managua",
+      "desde": "2017-05",
+      "hasta": "2019-01",
+      "logros": [
+        {
+          "texto": "Brindé servicios de soporte de TI a clientes corporativos en modalidad de outsourcing.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Instalé y mantuve servidores empresariales virtualizados, incluida la configuración de almacenamiento RAID y la actualización de firmware.",
+          "evidencia": "produccion"
+        },
+        {
+          "texto": "Di mantenimiento preventivo y correctivo a servidores, equipos de cómputo y de red.",
+          "evidencia": "produccion"
+        }
+      ]
+    }
+  ],
+  "educacion": [
+    {
+      "institucion": "Universidad Nacional Autónoma de Nicaragua (UNAN-Managua)",
+      "titulo": "Ingeniería en Telemática",
+      "estado": "En curso — 4to año",
+      "desde": "2023-01",
+      "hasta_previsto": "2027-01"
+    },
+    {
+      "institucion": "Megabyte Service S.A.",
+      "titulo": "Técnico Medio en Computación y Diseño Gráfico",
+      "estado": "Completado",
+      "desde": "2012",
+      "hasta": "2014"
+    }
+  ],
+  "formacion": [
+    {
+      "nombre": "ISO/IEC 27001:2022 Information Security Associate",
+      "institucion": "SkillFront",
+      "tipo": "certificacion_examen_online",
+      "fecha": "2026-06",
+      "id_credencial": "78448473010803",
+      "destacar": true
+    },
+    {
+      "nombre": "CCNA: Introducción a Redes (ITN)",
+      "institucion": "Cisco Networking Academy — EDUTEK",
+      "tipo": "curso",
+      "fecha": "2026-04",
+      "destacar": true
+    },
+    {
+      "nombre": "Power BI",
+      "institucion": "Instituto Europeo de Posgrado",
+      "tipo": "curso",
+      "fecha": "2026-03",
+      "horas": 50,
+      "destacar": false
+    },
+    {
+      "nombre": "Bootcamp Fundamentos de Ciberseguridad",
+      "institucion": "Comunidad DOJO y WoSec Panamá",
+      "tipo": "bootcamp",
+      "fecha": "2026-03",
+      "horas": 22,
+      "destacar": true
+    },
+    {
+      "nombre": "Conceptos Básicos de Hardware",
+      "institucion": "Cisco Networking Academy — EDUTEK",
+      "tipo": "curso_corto",
+      "fecha": "2025-02",
+      "destacar": false
+    },
+    {
+      "nombre": "Certificado Profesional de Soporte de TI de Google (5 cursos)",
+      "institucion": "Google / Coursera",
+      "tipo": "certificado_profesional",
+      "fecha": "2024-12",
+      "id_credencial": "FBLB0R0RKKAY",
+      "vence": false,
+      "destacar": true
+    },
+    {
+      "nombre": "CCNAv7: Introducción a Redes (ITN)",
+      "institucion": "Cisco Networking Academy — Universidad Miguel Hernández (España)",
+      "tipo": "curso",
+      "fecha": "2023-12",
+      "destacar": true
+    },
+    {
+      "nombre": "Bootcamp Analista SOC Nivel 1",
+      "institucion": "Comunidad DOJO y WoSec Panamá",
+      "tipo": "bootcamp",
+      "fecha": "2022-09",
+      "horas": 24,
+      "destacar": true
+    },
+    {
+      "nombre": "Análisis Forense Digital en Sistemas Windows",
+      "institucion": "UCAPEM Group (Ecuador)",
+      "tipo": "curso",
+      "fecha": "2022-08",
+      "horas": 60,
+      "destacar": true
+    },
+    {
+      "nombre": "Securitización de Equipos con las Bases de CIS Control",
+      "institucion": "Capacitación USACH (Cybersecurity Week)",
+      "tipo": "taller",
+      "fecha": "2022-06",
+      "horas": 1,
+      "verificacion": "Credly",
+      "destacar": false
+    },
+    {
+      "nombre": "ISEC Infosecurity Managua",
+      "institucion": "I-SEC Information Security",
+      "tipo": "evento",
+      "fecha": "2022-06",
+      "horas": 8,
+      "destacar": false
+    },
+    {
+      "nombre": "Introduction to Packet Tracer",
+      "institucion": "Cisco Networking Academy",
+      "tipo": "curso_corto",
+      "fecha": "2022-02",
+      "destacar": false
+    },
+    {
+      "nombre": "Diplomado en Seguridad Informática Ágil",
+      "institucion": "Instituto de Ciberdefensa",
+      "tipo": "diplomado",
+      "fecha": "2022-01",
+      "horas": 120,
+      "id_credencial": "b8xzu5slcz",
+      "destacar": true
+    },
+    {
+      "nombre": "IT Fundamentals",
+      "institucion": "Udemy",
+      "tipo": "curso_corto",
+      "fecha": "2020-11",
+      "horas": 2,
+      "destacar": false
+    },
+    {
+      "nombre": "Conviértete en especialista en soporte IT",
+      "institucion": "LinkedIn Learning",
+      "tipo": "ruta_aprendizaje",
+      "fecha": "2020-10",
+      "horas": 14,
+      "destacar": false
+    },
+    {
+      "nombre": "Seguridad en Equipos Informáticos",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2020-09",
+      "horas": 180,
+      "destacar": true
+    },
+    {
+      "nombre": "Gestión de los Servicios en Sistemas Informáticos",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2020-09",
+      "horas": 90,
+      "destacar": false
+    },
+    {
+      "nombre": "Técnico en Informática (Ofimática)",
+      "institucion": "Fundación Carlos Slim",
+      "tipo": "curso",
+      "fecha": "2020-06",
+      "destacar": false
+    },
+    {
+      "nombre": "Administración de Servicios de Red",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2020-03",
+      "horas": 150,
+      "destacar": true
+    },
+    {
+      "nombre": "NDG Linux Unhatched",
+      "institucion": "Cisco Networking Academy",
+      "tipo": "curso_corto",
+      "fecha": "2019-10",
+      "destacar": false
+    },
+    {
+      "nombre": "Cybersecurity Essentials",
+      "institucion": "Cisco Networking Academy",
+      "tipo": "curso",
+      "fecha": "2019-03",
+      "destacar": false
+    },
+    {
+      "nombre": "Introduction to Cybersecurity",
+      "institucion": "Cisco Networking Academy",
+      "tipo": "curso_corto",
+      "fecha": "2019-03",
+      "destacar": false
+    },
+    {
+      "nombre": "Herramientas de Gestión en la Nube",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2019-03",
+      "horas": 40,
+      "destacar": false
+    },
+    {
+      "nombre": "Iniciación al Hacking Ético",
+      "institucion": "Comunix (España)",
+      "tipo": "curso",
+      "fecha": "2018-12",
+      "horas": 120,
+      "calificacion": "99/100",
+      "destacar": true
+    },
+    {
+      "nombre": "Servicio de Red de Área Local",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2018-09",
+      "horas": 23,
+      "destacar": false
+    },
+    {
+      "nombre": "Infraestructura de Red",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2018-08",
+      "horas": 75,
+      "destacar": false
+    },
+    {
+      "nombre": "Reparación de Equipos de Cómputo",
+      "institucion": "INATEC",
+      "tipo": "curso_tecnico",
+      "fecha": "2018-08",
+      "horas": 150,
+      "destacar": false
+    }
+  ],
+  "formacion_agrupada": [
+    {
+      "nombre": "Jornadas de IA aplicada y ciberseguridad (8 jornadas de 6 h, certificados de asistencia)",
+      "institucion": "BIG school",
+      "periodo": "2026-01 a 2026-06",
+      "incluye": [
+        "IA 2026",
+        "Desarrollo con IA: de 0 a Producción",
+        "Desarrollo con IA: Programa con Agentes",
+        "IA de 0 a Agentes",
+        "Ciberseguridad y Hacking Ético",
+        "Data Science con IA",
+        "Marketing Digital con IA",
+        "SEO para IA"
+      ],
+      "tipo": "jornadas_asistencia"
+    }
+  ],
+  "habilidades": [
+    {
+      "categoria": "Virtualización",
+      "items": [
+        "Proxmox VE",
+        "VMware ESXi",
+        "Migración P2V (vCenter Converter)"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Seguridad perimetral y redes",
+      "items": [
+        "FortiGate",
+        "Segmentación con VLANs",
+        "MikroTik"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Sistemas e identidad",
+      "items": [
+        "Active Directory",
+        "DNS",
+        "GPO",
+        "Windows Server",
+        "Linux (Debian, Ubuntu)",
+        "Inicio de sesión único (SSO/OIDC)"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Almacenamiento y respaldo",
+      "items": [
+        "NAS Synology",
+        "SAN HP",
+        "RAID",
+        "HP ProLiant / BladeSystem",
+        "iLO"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Comunicaciones",
+      "items": [
+        "FXS/FXO",
+        "Infraestructura de TI para sistemas de radiocomunicación",
+        "CCTV"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Contenedores y servicios",
+      "items": [
+        "Docker Compose",
+        "PostgreSQL"
+      ],
+      "evidencia": "produccion"
+    },
+    {
+      "categoria": "Desarrollo asistido por IA",
+      "items": [
+        "TypeScript",
+        "React (Next.js, TanStack Start)",
+        "Supabase",
+        "Django",
+        "Docker Compose",
+        "Git y GitHub Actions",
+        "Lovable, Claude Code, Codex"
+      ],
+      "evidencia": "proyecto_propio"
+    },
+    {
+      "categoria": "Laboratorio",
+      "items": [
+        "OSPF (Packet Tracer, GNS3)",
+        "Pentesting en entornos controlados",
+        "OpenStack (Kolla-Ansible)",
+        "pfSense",
+        "Cloudflare Tunnel",
+        "VitalPBX",
+        "Streaming (Wowza, OBS)"
+      ],
+      "evidencia": "laboratorio"
+    },
+    {
+      "categoria": "Formación",
+      "items": [
+        "Análisis forense Windows",
+        "Fundamentos SOC",
+        "ISO/IEC 27001",
+        "Power BI"
+      ],
+      "evidencia": "formacion"
+    },
+    {
+      "categoria": "Blandas",
+      "items": [
+        "Liderazgo técnico",
+        "Gestión de presupuesto y proveedores",
+        "Planificación de migraciones",
+        "Autodidacta"
+      ],
+      "evidencia": "produccion"
+    }
+  ],
+  "proyectos": [
+    {
+      "id": "erp-hub",
+      "nombre": "ERP Hub",
+      "marca": "NITSC",
+      "descripcion": "Suite de gestión empresarial de 4 módulos: RR. HH. y nómina (HRSM), finanzas y contabilidad (CFSM), compras e inventario (PISM) y ventas (FCSM). Multiempresa, con autenticación única y permisos por grupos del dominio.",
+      "estado": "En pruebas",
+      "stack": [
+        "Django",
+        "Gunicorn",
+        "PostgreSQL 16",
+        "Docker Compose",
+        "Proveedor de identidad OIDC",
+        "Proxy inverso",
+        "Redis"
+      ],
+      "destacable": [
+        "Redes Docker segmentadas (backend interno)",
+        "Integración entre módulos con webhooks firmados y patrón outbox",
+        "Control de acceso por roles (RBAC) a partir de grupos de directorio vía OIDC",
+        "Despliegue automatizado con scripts y Git hooks"
+      ],
+      "desarrollo": "Asistido por IA (Claude Code)",
+      "repositorio": {
+        "visibilidad": "privado",
+        "nota": "Repo del módulo HRSM; los demás módulos en repos propios"
+      },
+      "mostrar": false
+    },
+    {
+      "id": "core-erp-suite",
+      "nombre": "Core ERP Suite",
+      "marca": "NITSC",
+      "descripcion": "ERP SaaS multi-tenant para MiPyMEs de Nicaragua y Centroamérica, con lógica fiscal y laboral nicaragüense.",
+      "estado": "Desarrollo avanzado, con CI en GitHub Actions",
+      "stack": [
+        "TypeScript",
+        "React (TanStack Start)",
+        "Supabase (PostgreSQL, PL/pgSQL)",
+        "Bun"
+      ],
+      "desarrollo": "Asistido por IA (Lovable, Claude Code)",
+      "repositorio": {
+        "visibilidad": "privado"
+      },
+      "mostrar": true
+    },
+    {
+      "id": "core-ecommerce",
+      "nombre": "Core eCommerce Platform",
+      "marca": "NITSC",
+      "descripcion": "Plataforma para que pequeños emprendedores creen su propia tienda en línea.",
+      "estado": "En desarrollo (pausado)",
+      "stack": [
+        "TypeScript",
+        "React (TanStack Start)",
+        "Supabase (PostgreSQL, Auth)"
+      ],
+      "desarrollo": "Asistido por IA (Lovable, Codex)",
+      "repositorio": {
+        "visibilidad": "privado"
+      },
+      "mostrar": true
+    },
+    {
+      "id": "pasteleria",
+      "nombre": "Plantilla eCommerce para pastelerías",
+      "descripcion": "Aplicación full-stack para pastelerías: catálogo administrable, personalizador de pasteles, reservas y panel administrativo protegido. Diseñada como base reutilizable para varios negocios cambiando marca, contenido y datos.",
+      "estado": "En desarrollo",
+      "stack": [
+        "Next.js 15 (App Router)",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase (PostgreSQL, Auth, Storage)",
+        "PostgreSQL RLS"
+      ],
+      "desarrollo": "Asistido por IA (Codex)",
+      "repositorio": {
+        "visibilidad": "privado"
+      },
+      "mostrar": true,
+      "destacable": [
+        "Row Level Security (RLS) en PostgreSQL sobre todas las tablas, con función is_admin() y roles en perfiles",
+        "Autorización verificada en servidor (middleware + route handlers), no solo en la interfaz",
+        "Totales de pedido calculados en servidor mediante funciones RPC, sin confiar en el precio enviado por el navegador",
+        "CI en GitHub Actions (typecheck, lint, build) e integración a main mediante Pull Request"
+      ],
+      "marca": "NITSC"
+    },
+    {
+      "id": "variedades-hoannes",
+      "nombre": "Variedades Hoannes",
+      "descripcion": "Tienda en línea para un negocio familiar, con pagos por depósito o transferencia e integración con Stripe preparada.",
+      "estado": "En línea",
+      "stack": [
+        "JavaScript",
+        "Next.js",
+        "Docker Compose"
+      ],
+      "url": "https://www.variedadeshoannes.com",
+      "desarrollo": "Asistido por IA",
+      "repositorio": {
+        "visibilidad": "privado"
+      },
+      "mostrar": false,
+      "estructura": "storefront, admin-panel y backend"
+    },
+    {
+      "id": "lab-openstack",
+      "nombre": "Laboratorio de nube privada con OpenStack",
+      "contexto": "Cloud Computing II — UNAN",
+      "descripcion": "Nube privada con OpenStack desplegado con Kolla-Ansible sobre Ubuntu 24.04, con pfSense como firewall perimetral. Aloja VMs con VitalPBX, un servidor Wowza con OBS y gateway de streaming, y un sitio web en Docker que muestra la transmisión y permite llamadas a extensiones de VitalPBX. Los servicios se publican a Internet solo mediante Cloudflare Tunnel.",
+      "estado": "En curso",
+      "stack": [
+        "OpenStack 2026.1",
+        "Kolla-Ansible",
+        "Ubuntu 24.04",
+        "pfSense",
+        "VitalPBX",
+        "Wowza",
+        "OBS",
+        "Docker",
+        "Cloudflare Tunnel"
+      ],
+      "evidencia": "laboratorio",
+      "mostrar": true
+    }
+  ],
+  "nitsc": {
+    "nombre": "NITSC — Nica IT Solutions Center",
+    "presentacion": "Emprendimiento propio en etapa inicial orientado a soporte, consultoría, outsourcing de TI y desarrollo a medida.",
+    "web": "https://www.nicaitsolutionscenter.net",
+    "servicios": [
+      "Soporte técnico",
+      "Consultoría de infraestructura",
+      "Outsourcing de TI",
+      "Desarrollo a medida"
+    ]
+  },
+  "prohibido": [
+    "Ingeniero en Telemática (como título obtenido o graduado)",
+    "Clúster Proxmox / alta disponibilidad (HA) en Proxmox",
+    "Zero Trust",
+    "Zabbix / Grafana",
+    "Cualquier porcentaje de uptime (90%, 99%, 99.9%)",
+    "Reducción del 80% en tiempos de resolución",
+    "Certificación CCNA (solo el curso ITN)",
+    "Experto / especialista de primer nivel / validaciones internacionales de primer nivel",
+    "Pentesting o hacking ético en producción",
+    "OSPF en producción",
+    "Diseñé una red multisitio con VPN de alta disponibilidad",
+    "Protección total / continuidad absoluta / blindaje",
+    "Analista SOC (como cargo desempeñado)",
+    "Clientes de NITSC / casos de éxito de NITSC",
+    "Firma consultora (para NITSC)",
+    "Arquitectura de microservicios",
+    "Arquitecto de infraestructura",
+    "Sistema perfecto / auto-sanable",
+    "100% Curiosity / Resilience",
+    "Production Ready",
+    "Entrenado (para el bot)"
+  ],
+  "prohibido_privado": [
+    {
+      "etiqueta": "Nombre de proyecto de uso privado 1",
+      "sha256": "318e6766d7cc9e7dd35cd6ce7ae00f495edf43421730d4bea0c8f3bae22fc59a"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "f807106b2fbac69e8ae985a0df0eddfad57d429433506d3c174aa5fb6bf76985"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "6d18037e42e49bea6a33fe39e87d4176303a85fd2ff47da882a8ad24177147d4"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "a9b6eb103373ffe5c22b7b6f057cbe8a92c52f5f066ef3e822ca9d8a529e60c4"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "ffa8780804bef693b5a9e8ed017f3c36a727d090f2d5f326524a33cd4a80e616"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "61f1a495d9dec330dc9da82d29a8b48a74c57af6bc27b8d5e872361658f48cfa"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "3dae0ea1f7a1be948941689606bca945024981d3a8cb7e3a9bcd4ac7780f89fd"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "55c761bbd23497a8567a832ce2a2eb1b55e519d2c6716605ccd472b9e604fa5b"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "80fbe8e5cafde5072e4001b288904dd6679e158380456979c6cd5e7c899deac4"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "669a1017b7ef599877ddd5cd7ccf90505c13ab1f8f85058081cbfba361b9d8d5"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "6dff4da0baab226177c7b53a6ca3a3cd210beb6afcc96409a2c3faa437f96f6d"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "7a02a7bbd458c85bcc3170026ac32060b0477a7803e19799997bc4833aec8c5e"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "dceb400d3ba580070328abb4751187121ce0b51008c4f3f62557561a8682c9f2"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "1bc269fe4571a87748fabc68fdb430f0eda1c7d8bd94581753d4aaac52a032ca"
+    },
+    {
+      "etiqueta": "Modelo o versión de equipo de un empleador",
+      "sha256": "bd860773b7aac4c26fe087ce9214c984bda77c6d923a2d0ad0940a8297cf56b0"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "f8e9475f42748b5d9efd0e95a9893e0f64f39ba3f70529a0157509baa31afc6e"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "fee0ad20d7410bb5e40ff70fc64ed40809b761f22967f67fe1c9430b24352d5e"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "b1343edb624fdc05fb106571c0b2c2f92cba73829311959fde889d2ec1f1ef6f"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "545ef80d586ec7dc62cc182a46f11c98faa0c58106244181cc9978776fc24a3f"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "9deb000fd45166daa80d9c665ddc6666e553c2062851d9dd1ce476cb004fdb8c"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "deecdf692a463157cf768aa90eba318f873e3e25252e5b206691acfb71a513ec"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "24e6b4a4ef5c7fd3e40c729dcb3a5d6bd6e6766ed9e1919359d4e3897668b0fb"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "07a07ff2a800af32c8801936a017effe3eaa9648e972581f7ba80801950cce5e"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "4a4298cdaade9f9ff9d76f8249769115b293beaa6023f04957155ad6cc02ef1b"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "d3ba05945ead0214d187cc0b52da7bb4149e50104cf0669ea17274c7fec72965"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "f1a206d9615c86dbffc9051a4fb1d9c6a3dcb19f047d3c359a49c615507ff2b1"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "a6a5f773cbe6756a2df8611e200c2a53e05a80a021ee1f16537db6287559771c"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "b43ade0ccc62dbc1fa59987568690ddbcd599b98e888493e733b5b7afb558972"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "ceeee98088e85ee86cd0e0b036bddd78e1a30a38dd7241ce2b0779a95637072e"
+    },
+    {
+      "etiqueta": "Cantidad o medida de la infraestructura de un empleador",
+      "sha256": "a711d18b306165bffdc14ea09e81978067f00fc179196f7daa713417d9a666e8"
+    },
+    {
+      "etiqueta": "Cantidad o medida de la infraestructura de un empleador",
+      "sha256": "7db757efd6af8fb0e5be25781da8a238726ec6d135df036e571ac14a864ed81d"
+    },
+    {
+      "etiqueta": "Cantidad o medida de la infraestructura de un empleador",
+      "sha256": "9324664b258276c55ee838311a245ebefb02647b4766cd7669cb1fdc47881937"
+    },
+    {
+      "etiqueta": "Cantidad o medida de la infraestructura de un empleador",
+      "sha256": "cb797a4fadffa256204a8aa9213568f11cf24abfccd3b4b6a2ecf1c091b2d58c"
+    },
+    {
+      "etiqueta": "Cantidad o medida de la infraestructura de un empleador",
+      "sha256": "a4e4433db16d9d76579f3a400b64099a2f38a30f9d69197e43c78a6218e8da08"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "3789ba535d0d992a78a7c5b5af074376bed71c4c7705fafff714a40b393114d8"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "284b11ece7ef67a059c39b028ff83698334160123ae446d2d8a6cf615de49c78"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "4f0bfc6f2aaf8751022105410b4d1ce7d7d3218e7616a0eabb6491ae11915b3e"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "d908db1013fb762429249cc870b426ec68d5f934d99f5773138a387d676ba3dd"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "07596bea5d09fec44973b0000e58f0f044c875b4b35ad99aea6396d57f99659d"
+    },
+    {
+      "etiqueta": "Detalle organizativo o de despliegue de un empleador",
+      "sha256": "d0f000e97ef3e4f57d4fe6d6c724b78031e6e9f3549c970809ee79ba3d4a1632"
+    },
+    {
+      "etiqueta": "Esquema de segmentación de red de un empleador",
+      "sha256": "31ff3752afa2567bab945fe724ba94f99273b27ddff471a79b4223fa531ac2de"
+    },
+    {
+      "etiqueta": "Esquema de segmentación de red de un empleador",
+      "sha256": "74d1d7fff13981b7e35e44c9bf64c59d41042a057519481464a57d417329110c"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "a5a86796bf64bc61e8fc793b078a113bf2bfde636030f72bb4ecf498522e1212"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "2fcc9256ec1186625790e592f0427f659ed67e297001c1cf06e47ce1aa12c0a1"
+    },
+    {
+      "etiqueta": "Nombre de sistema interno de un empleador",
+      "sha256": "b1440ed1cc3fc851f994bdcca19f454062564e975fb79a83db24c6b7dea60730"
+    }
+  ]
+}
