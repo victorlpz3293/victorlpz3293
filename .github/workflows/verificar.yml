@@ -1,0 +1,83 @@
+name: Verificar
+
+# Corre sobre Pull Requests, nunca sobre main. Vercel despliega todo lo que llegue a main,
+# así que la verificación tiene que ocurrir antes del merge: main está protegida y exige
+# que este workflow pase.
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'templates/**'
+      - 'scripts/**'
+      - 'src/**'
+      - 'public/assets/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/verificar.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: verificar-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+
+    # El propio job hace commit del README y del PDF. Sin esta condición, ese commit
+    # dispararía otra ejecución, que haría otro commit, y así indefinidamente.
+    if: github.actor != 'github-actions[bot]'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clonar la rama del Pull Request
+        uses: actions/checkout@v4
+        with:
+          # La rama del PR, no la mezcla que GitHub prepara: hay que poder hacer commit en ella.
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Validar profile.json
+        run: npm run validate
+
+      - name: Generar la web
+        run: npm run build:context && npm run build:css && npm run build:site
+
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Regenerar el CV en PDF
+        run: npm run build:pdf
+
+      - name: Regenerar el README
+        run: npm run build:readme
+
+      # check-claims va después de generarlo todo: revisa lo que se va a publicar,
+      # incluido el texto extraído del PDF, no lo que dicen las plantillas.
+      - name: Revisar las afirmaciones prohibidas
+        run: npm run check-claims
+
+      - name: Confirmar el README y el PDF si cambiaron
+        run: |
+          if git diff --quiet -- README.md public/cv-victor-lopez.pdf; then
+            echo "Sin cambios que confirmar."
+            exit 0
+          fi
+
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md public/cv-victor-lopez.pdf
+          git commit -m 'Regenera el README y el CV desde profile.json [skip ci]'
+          git push origin HEAD:${{ github.head_ref }}

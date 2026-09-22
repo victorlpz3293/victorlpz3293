@@ -1,64 +1,74 @@
-# ⚡ Víctor López | Ingeniero en Telemática & IT Manager
+# Victor R. López
 
-![Status](https://img.shields.io/badge/Status-100%25_Curiosity_%7C_99.9%25_Resilience-success?style=for-the-badge)
-![Location](https://img.shields.io/badge/Base_of_Operations-Ciudad_Sandino%2C_Nicaragua-blue?style=for-the-badge)
-![Website](https://img.shields.io/badge/Portfolio-victorlpz3293.me-orange?style=for-the-badge)
+**Responsable de TI · Infraestructura, Virtualización y Redes · Ciberseguridad**
 
-¡Hola! Soy Víctor 👋. Mi viaje en la tecnología no empezó en un entorno corporativo automatizado en la nube, sino desarmando equipos en Ciudad Sandino impulsado por una curiosidad puramente autodidacta. Hoy, combino esa misma curiosidad con la rigurosidad científica de la Ingeniería en Telemática (UNAN) para desempeñarme como **Responsable de TI en Kaitai Nicaragua S.A.** y liderar mi propia firma **Nica IT Solutions Center (NITSC)**.
+![Ubicación](https://img.shields.io/badge/Ciudad_Sandino%2C_Managua%2C_Nicaragua-blue?style=flat-square)
+[![Web](https://img.shields.io/badge/victorlpz3293.me-orange?style=flat-square)](https://www.victorlpz3293.me)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-victorlpz3293-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/victorlpz3293/)
 
-No soy solo un "entusiasta de la IA"; soy un arquitecto de infraestructura que entiende lo que ocurre en los cimientos reales: desde el enrutamiento físico de paquetes hasta la virtualización de alta disponibilidad.
+Empecé en la tecnología con un técnico medio en computación y desde 2017 trabajo en TI. Pasé del soporte técnico en servicios de outsourcing a liderar el área de TI de una empresa.
+
+## Qué hago hoy
+
+- Lidero el área de TI: planificación del presupuesto, gestión de proveedores tecnológicos y mantenimiento preventivo y correctivo de la infraestructura.
+- Implementé y administro la seguridad perimetral de la red corporativa.
+- Implementé la plataforma de virtualización y los servicios de directorio de la empresa.
+- Centralicé la autenticación de los usuarios mediante inicio de sesión único (SSO).
+
+## Trayectoria
+
+| Periodo | Cargo | Empresa |
+|---|---|---|
+| sep 2025 – actualidad | Responsable de TI | Kaitai Nicaragua S.A. |
+| oct 2022 – jun 2025 | Oficial de TI | Mega Comunicaciones S.A. (MEGACOM) |
+| dic 2020 – oct 2022 | Ejecutivo de Servicio Técnico | Hermoso y Vigil S.A. |
+| may 2017 – ene 2019 | Técnico de Soporte TI | IPESA de Nicaragua |
+
+## Stack
+
+**En producción**
+
+![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-E57000?style=flat-square&logo=proxmox&logoColor=white)
+![VMware ESXi](https://img.shields.io/badge/VMware_ESXi-607078?style=flat-square&logo=vmware&logoColor=white)
+![FortiGate](https://img.shields.io/badge/FortiGate-C81326?style=flat-square&logo=fortinet&logoColor=white)
+![MikroTik](https://img.shields.io/badge/MikroTik-293239?style=flat-square&logo=mikrotik&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Active Directory](https://img.shields.io/badge/Active_Directory-0078D4?style=flat-square&logo=windows&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Synology](https://img.shields.io/badge/Synology-B5B5B6?style=flat-square&logo=synology&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+
+**En laboratorio:** OSPF (Packet Tracer, GNS3) · Pentesting en entornos controlados · OpenStack (Kolla-Ansible) · pfSense · Cloudflare Tunnel · VitalPBX · Streaming (Wowza, OBS)
+
+**Desarrollo asistido por IA:** TypeScript · React (Next.js, TanStack Start) · Supabase · Django · Docker Compose · Git y GitHub Actions · Lovable, Claude Code, Codex
+
+## Proyectos
+
+> Mis proyectos de software los desarrollo **con asistencia de IA**. Mi aporte está en el diseño, la infraestructura, el despliegue y la operación.
+
+| Proyecto | Qué es | Stack | Estado |
+|---|---|---|---|
+| **Core ERP Suite** | ERP SaaS multi-tenant para MiPyMEs de Nicaragua y Centroamérica, con lógica fiscal y laboral nicaragüense. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, PL/pgSQL) | Desarrollo avanzado, con CI en GitHub Actions |
+| **Core eCommerce Platform** | Plataforma para que pequeños emprendedores creen su propia tienda en línea. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, Auth) | En desarrollo (pausado) |
+| **Plantilla eCommerce para pastelerías** | Aplicación full-stack para pastelerías: catálogo administrable, personalizador de pasteles, reservas y panel administrativo protegido. Diseñada como base reutilizable para varios negocios cambiando marca, contenido y datos. | Next.js 15 (App Router), React 19, TypeScript | En desarrollo |
+| **Laboratorio de nube privada con OpenStack** | Nube privada con OpenStack desplegado con Kolla-Ansible sobre Ubuntu 24.04, con pfSense como firewall perimetral. Aloja VMs con VitalPBX, un servidor Wowza con OBS y gateway de streaming, y un sitio web en Docker que muestra la transmisión y permite llamadas a extensiones de VitalPBX. Los servicios se publican a Internet solo mediante Cloudflare Tunnel. | OpenStack 2026.1, Kolla-Ansible, Ubuntu 24.04 | En curso |
+
+*Los repositorios de los proyectos son privados.*
+
+## NITSC
+
+**[Nica IT Solutions Center](https://www.nicaitsolutionscenter.net)** — Emprendimiento propio en etapa inicial orientado a soporte, consultoría, outsourcing de TI y desarrollo a medida.
+
+## Formación destacada
+
+ISO/IEC 27001:2022 Information Security Associate (SkillFront) · CCNA: Introducción a Redes (ITN) (Cisco Networking Academy) · Bootcamp Fundamentos de Ciberseguridad (Comunidad DOJO y WoSec Panamá) · Certificado Profesional de Soporte de TI de Google (5 cursos) (Google / Coursera) · CCNAv7: Introducción a Redes (ITN) (Cisco Networking Academy) · Bootcamp Analista SOC Nivel 1 (Comunidad DOJO y WoSec Panamá) · Análisis Forense Digital en Sistemas Windows (UCAPEM Group (Ecuador)) · Diplomado en Seguridad Informática Ágil (Instituto de Ciberdefensa) · Seguridad en Equipos Informáticos (INATEC) · Administración de Servicios de Red (INATEC) · Iniciación al Hacking Ético (Comunix (España))
+
+## Contacto
+
+- Web y asistente: [victorlpz3293.me](https://www.victorlpz3293.me)
+- [Descargar CV (PDF)](https://www.victorlpz3293.me/cv-victor-lopez.pdf)
+- victorlpz3293@gmail.com
 
 ---
 
-### 🚀 Filosofía de Ingeniería y Crecimiento
-
-> *"La conectividad, la virtualización y la ciberseguridad no son capas aisladas, sino un tejido invisible y auto-sanable. El sistema perfecto es aquel que se recupera antes de que la pantalla del usuario parpadee."*
-
-Mi trayectoria me ha llevado a escalar desde el Soporte Técnico en las trincheras hasta el diseño de arquitecturas robustas:
-* **Evolución Real:** De configurar hardware local a liderar clusters de Proxmox en producción, gestionar VMware ESXi y desplegar VPNs multisitio.
-* **Desarrollo + Infraestructura (Híbrido):** Integro mi profundo background de SysAdmin con el desarrollo de software Full-Stack (Next.js, Node) para crear automatizaciones que aceleran el negocio sin sacrificar la seguridad perimetral.
-
----
-
-### 🛠️ Arsenal Tecnológico y Especialidad
-
-**Infraestructura, Redes & Ciberseguridad**
-![Proxmox](https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white)
-![VMware](https://img.shields.io/badge/VMware-607078?style=for-the-badge&logo=vmware&logoColor=white)
-![Cisco](https://img.shields.io/badge/Cisco-1BA0D7?style=for-the-badge&logo=cisco&logoColor=white)
-![Fortinet](https://img.shields.io/badge/Fortinet-C81326?style=for-the-badge&logo=fortinet&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
-**Desarrollo Full-Stack & Bases de Datos**
-![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-
----
-
-### 📂 Ecosistema de Proyectos (Laboratorio)
-
-* 🎬 **NicaFlix:** Ecosistema de streaming multiplataforma (Web, Android) diseñado bajo una arquitectura moderna de microservicios.
-* 🛡️ **HRMS & TowerViewer:** Sistemas integrales avanzados para la gestión de talento humano y plataformas de videovigilancia.
-* 🛍️ **Variedades Anita:** Un sistema eCommerce completo que gestiona pagos por depositos, tranferencias o pagos por Wallet. Optimizado con el uso de multimoneda y adactado a usar idioma Español o Ingles.
-
----
-
-### 📊 Mi Actividad y Resiliencia en Código
-
-<p align="center">
-  <a href="https://github.com/aaron-lewis/github-readme-streak-stats">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=victorlpz3293&theme=tokyonight" alt="Victor's GitHub Streak" />
-  </a>
-</p>
-
----
-
-### 📫 Hablemos de Tecnología e Innovación
-
-Siempre estoy abierto a conectar con la comunidad técnica, charlar sobre arquitecturas Zero-Trust o posibles colaboraciones.
-
-* 🌐 **Interactúa con mi IA Biográfica: [Victor Lopez](https://www.victorlpz3293.me/)**
-* 👁️ **Ojea los servicio que estamos impulsando a travez de [NITSC](https://www.nicaitsolutionscenter.net/) (Nica IT Solutions Center)**
+<sub>Este repositorio también contiene el código de victorlpz3293.me. Documentación técnica en [docs/TECNICO.md](docs/TECNICO.md). Este README se genera desde `data/profile.json`.</sub>
