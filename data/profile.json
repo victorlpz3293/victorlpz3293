@@ -586,7 +586,7 @@
       "repositorio": {
         "visibilidad": "privado"
       },
-      "mostrar": true,
+      "mostrar": false,
       "destacable": [
         "Row Level Security (RLS) en PostgreSQL sobre todas las tablas, con función is_admin() y roles en perfiles",
         "Autorización verificada en servidor (middleware + route handlers), no solo en la interfaz",
@@ -598,19 +598,22 @@
     {
       "id": "variedades-hoannes",
       "nombre": "Variedades Hoannes",
-      "descripcion": "Tienda en línea para un negocio familiar, con pagos por depósito o transferencia e integración con Stripe preparada.",
+      "descripcion": "Tienda en línea del negocio familiar de mi esposa: tienda pública, panel de administración y API propia con catálogo, pedidos, cupones y envíos. Los pagos se reciben por depósito o transferencia bancaria y por la app Kash; la integración con Stripe está preparada, pero no activa.",
       "estado": "En línea",
       "stack": [
-        "JavaScript",
-        "Next.js",
-        "Docker Compose"
+        "Next.js 16",
+        "React 19",
+        "Redux Toolkit",
+        "Node.js (Express)",
+        "PostgreSQL (Sequelize)",
+        "Stripe"
       ],
       "url": "https://www.variedadeshoannes.com",
       "desarrollo": "Asistido por IA",
       "repositorio": {
         "visibilidad": "privado"
       },
-      "mostrar": false,
+      "mostrar": true,
       "estructura": "storefront, admin-panel y backend"
     },
     {

@@ -20,7 +20,48 @@ const ICONOS = {
   menu: '<path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/>',
   cerrar: '<path d="m19 6.41-1.41-1.41L12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/>',
   chat: '<path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2ZM7 9h10v2H7V9Zm0 4h7v2H7v-2Z"/>',
+
+  // Certificaciones. Íconos genéricos por tema, nunca el logotipo de quien la emite.
+  escudo:
+    '<path d="M12 2 4 5v6c0 5.25 3.4 10.15 8 11.35 4.6-1.2 8-6.1 8-11.35V5l-8-3Zm-1.2 14.2-3.5-3.5 1.4-1.4 2.1 2.1 4.9-4.9 1.4 1.4-6.3 6.3Z"/>',
+  red: '<path d="M10 3h4v4h-1v3h6v4h1v4h-4v-4h1v-2h-4v2h1v4h-4v-4h1v-2H7v2h1v4H4v-4h1v-4h6V7h-1V3Z"/>',
+  insignia:
+    '<path d="M12 2a6 6 0 0 0-3.6 10.8L7 22l5-3 5 3-1.4-9.2A6 6 0 0 0 12 2Zm0 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/>',
+  lupa: '<path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.41 1.4-5.4-5.39A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/>',
+  monitor:
+    '<path d="M3 4h18a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-7v2h3v2H7v-2h3v-2H3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm1 2v9h16V6H4Z"/>',
+  herramienta:
+    '<path d="M22.7 19.3 13.6 10.2c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3l4.3 4.3-3 3L1.6 5C.4 7.4.9 10.4 2.9 12.4c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4Z"/>',
+  birrete: '<path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3ZM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/>',
 };
+
+/** Ícono de una certificación según su tema. El orden importa: lo más específico primero. */
+const iconoFormacion = (nombre) => {
+  if (/iso\/iec|27001/i.test(nombre)) return 'insignia';
+  if (/forense/i.test(nombre)) return 'lupa';
+  if (/\bSOC\b/.test(nombre)) return 'monitor';
+  if (/redes|\bred\b|ccna/i.test(nombre)) return 'red';
+  if (/soporte/i.test(nombre)) return 'herramienta';
+  if (/seguridad|ciber|hacking/i.test(nombre)) return 'escudo';
+  return 'birrete';
+};
+
+// Un color por certificación. Clases completas y literales: Tailwind solo compila las que
+// encuentra escritas tal cual, no las que se arman concatenando.
+const COLORES_FORMACION = [
+  'bg-rose-500/10 text-rose-400',
+  'bg-sky-500/10 text-sky-400',
+  'bg-emerald-500/10 text-emerald-400',
+  'bg-amber-500/10 text-amber-400',
+  'bg-violet-500/10 text-violet-400',
+  'bg-cyan-500/10 text-cyan-400',
+  'bg-orange-500/10 text-orange-400',
+  'bg-lime-500/10 text-lime-400',
+  'bg-fuchsia-500/10 text-fuchsia-400',
+  'bg-teal-500/10 text-teal-400',
+  'bg-indigo-500/10 text-indigo-400',
+  'bg-red-500/10 text-red-400',
+];
 
 const icono = (nombre, clases = 'w-5 h-5') =>
   `<svg class="${clases}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${ICONOS[nombre]}</svg>`;
@@ -40,6 +81,17 @@ const ROTULO_EVIDENCIA = {
   formacion: 'Estudiado, sin experiencia laboral',
   proyecto_propio: 'Proyectos propios, desarrollados con asistencia de IA',
 };
+
+// Versión corta del rótulo, para la etiqueta de cada tarjeta. La leyenda de la sección
+// empareja cada una con su significado completo.
+const ETIQUETA_EVIDENCIA = {
+  produccion: ['Producción', 'insignia-estado'],
+  proyecto_propio: ['Proyecto propio · IA', 'insignia-ia'],
+  laboratorio: ['Laboratorio', 'insignia-lab'],
+  formacion: ['Estudiado', 'insignia-estudio'],
+};
+
+const ORDEN_EVIDENCIA = ['produccion', 'proyecto_propio', 'laboratorio', 'formacion'];
 
 const logo = `<svg class="w-10 h-10" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="46" fill="#0f172a" stroke="#06b6d4" stroke-width="4"/>
@@ -68,8 +120,10 @@ export function render(perfil, opciones = {}) {
 
   // --- Experiencia ---
 
+  // El orden es el del JSON, del puesto actual al primero. El número del círculo solo marca
+  // la posición en la línea; el primero va en el color de la marca porque es el vigente.
   const bloquesExperiencia = experiencia
-    .map((puesto) => {
+    .map((puesto, i) => {
       const periodo = `${fechaCorta(puesto.desde)} – ${fechaCorta(puesto.hasta)}`;
       const lugar = puesto.ubicacion ? ` · ${esc(puesto.ubicacion)}` : '';
       const contexto = puesto.contexto
@@ -84,27 +138,29 @@ export function render(perfil, opciones = {}) {
               : '';
           return `<li class="text-sm text-slate-300 leading-relaxed">${esc(l.texto)}${curso}</li>`;
         })
-        .join('\n              ');
-      const tecnologias = puesto.tecnologias?.length
-        ? `<div class="flex flex-wrap gap-1.5 mt-5">${puesto.tecnologias
-            .map((t) => `<span class="insignia">${esc(t)}</span>`)
-            .join('')}</div>`
-        : '';
+        .join('\n                ');
+      const circulo = i === 0 ? 'circulo-linea circulo-actual' : 'circulo-linea';
 
-      return `<article class="tarjeta p-6 sm:p-8">
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 class="text-lg font-bold text-white">${esc(puesto.cargo)}</h3>
-              <span class="text-xs text-slate-400">${esc(periodo)}</span>
-            </div>
-            <p class="text-marca-cyan text-sm font-medium mt-1">${esc(puesto.empresa)}${lugar}</p>
-            ${contexto}
-            <ul class="mt-4 space-y-2.5 list-disc list-outside pl-5 marker:text-marca-cyan/60">
-              ${logros}
-            </ul>
-            ${tecnologias}
-          </article>`;
+      return `<li class="relative pl-12 sm:pl-14">
+              <span class="${circulo}" aria-hidden="true">${i + 1}</span>
+              <article class="tarjeta p-6">
+                <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                  <div>
+                    <h3 class="text-lg font-bold text-white">${esc(puesto.cargo)}</h3>
+                    <p class="text-marca-cyan text-sm font-medium mt-1">${esc(puesto.empresa)}${lugar}</p>
+                  </div>
+                  <span class="etiqueta-fecha">${esc(periodo)}</span>
+                </div>
+                ${contexto}
+                <ul class="mt-4 space-y-2.5 list-disc list-outside pl-5 marker:text-marca-cyan/60">
+                ${logros}
+                </ul>
+              </article>
+            </li>`;
     })
-    .join('\n\n          ');
+    .join('\n\n            ');
+
+  const primerAnio = experiencia.map((p) => p.desde.slice(0, 4)).sort()[0];
 
   // --- Proyectos ---
 
@@ -155,31 +211,39 @@ export function render(perfil, opciones = {}) {
 
   // --- Habilidades, agrupadas por evidencia ---
 
-  const bloquesHabilidades = ['produccion', 'proyecto_propio', 'laboratorio', 'formacion']
-    .map((tipo) => {
-      const grupo = habilidades.filter((h) => h.evidencia === tipo);
-      if (!grupo.length) return '';
+  // Una tarjeta por categoría, todas al mismo nivel. Antes se anidaban dentro de una tarjeta
+  // por tipo de evidencia, y producción (siete categorías) quedaba cuatro veces más alta que
+  // las demás. La evidencia pasa a ser una etiqueta de cada tarjeta.
+  const habilidadesOrdenadas = ORDEN_EVIDENCIA.flatMap((tipo) =>
+    habilidades.filter((h) => h.evidencia === tipo),
+  );
 
-      const filas = grupo
-        .map(
-          (h) => `<div class="py-4 border-b border-slate-800 last:border-0">
-                <h4 class="text-sm font-semibold text-white">${esc(h.categoria)}</h4>
-                <div class="flex flex-wrap gap-1.5 mt-2">${h.items
-                  .map((i) => `<span class="insignia">${esc(i)}</span>`)
-                  .join('')}</div>
-              </div>`,
-        )
-        .join('\n              ');
-
-      return `<div class="tarjeta p-6 break-inside-avoid mb-6">
-              <p class="etiqueta-seccion">${esc(ROTULO_EVIDENCIA[tipo])}</p>
-              <div class="mt-2">
-              ${filas}
-              </div>
-            </div>`;
+  const bloquesHabilidades = habilidadesOrdenadas
+    .map((h) => {
+      const [rotulo, clase] = ETIQUETA_EVIDENCIA[h.evidencia];
+      return `<div class="tarjeta p-5 break-inside-avoid mb-5">
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="text-sm font-semibold text-white">${esc(h.categoria)}</h3>
+              <span class="${clase} flex-shrink-0">${esc(rotulo)}</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-3">${h.items
+              .map((i) => `<span class="insignia">${esc(i)}</span>`)
+              .join('')}</div>
+          </div>`;
     })
-    .filter(Boolean)
     .join('\n\n          ');
+
+  // Solo los tipos que de verdad aparecen: una leyenda con entradas vacías confundiría.
+  const leyendaHabilidades = ORDEN_EVIDENCIA.filter((tipo) =>
+    habilidades.some((h) => h.evidencia === tipo),
+  )
+    .map((tipo) => {
+      const [rotulo, clase] = ETIQUETA_EVIDENCIA[tipo];
+      return `<li class="flex items-center gap-2"><span class="${clase}">${esc(rotulo)}</span> ${esc(
+        ROTULO_EVIDENCIA[tipo],
+      )}</li>`;
+    })
+    .join('\n        ');
 
   // --- Educación y formación ---
 
@@ -194,7 +258,8 @@ export function render(perfil, opciones = {}) {
     .join('\n\n            ');
 
   const filaFormacion = (f) => {
-    const horas = f.horas ? ` · ${f.horas} h` : '';
+    //  : espacio de no separación, para que la "h" no quede sola en otra línea.
+    const horas = f.horas ? ` · ${f.horas} h` : '';
     const credencial = f.id_credencial ? ` · ID ${esc(f.id_credencial)}` : '';
     return `<li class="py-3 border-b border-slate-800 last:border-0">
                 <p class="text-sm text-slate-200">${esc(f.nombre)}</p>
@@ -204,6 +269,26 @@ export function render(perfil, opciones = {}) {
 
   const destacadas = formacion.filter((f) => f.destacar);
   const resto = formacion.filter((f) => !f.destacar);
+
+  const tarjetasDestacadas = destacadas
+    .map((f, i) => {
+      const horas = f.horas ? ` · ${f.horas} h` : '';
+      const credencial = f.id_credencial
+        ? `<p class="text-[11px] text-slate-600 mt-0.5 break-all">ID ${esc(f.id_credencial)}</p>`
+        : '';
+      const color = COLORES_FORMACION[i % COLORES_FORMACION.length];
+      return `<li class="tarjeta p-4 flex items-start gap-3.5">
+              <span class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${color}">
+                ${icono(iconoFormacion(f.nombre), 'w-5 h-5')}
+              </span>
+              <div class="min-w-0">
+                <p class="text-sm font-semibold text-white leading-snug">${esc(f.nombre)}</p>
+                <p class="text-xs text-slate-500 mt-1">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}</p>
+                ${credencial}
+              </div>
+            </li>`;
+    })
+    .join('\n            ');
 
   const agrupada = (perfil.formacion_agrupada ?? [])
     .map(
@@ -341,10 +426,20 @@ export function render(perfil, opciones = {}) {
 
     <!-- Experiencia -->
     <section id="experiencia" class="contenedor py-16 border-t border-slate-900">
-      <p class="etiqueta-seccion">Trayectoria</p>
-      <h2 class="titulo-seccion">Experiencia</h2>
-      <div class="mt-8 space-y-6">
-          ${bloquesExperiencia}
+      <!-- items-start es lo que permite el sticky: si la columna se estirara hasta la altura
+           de la línea de tiempo, no tendría espacio donde quedarse fija. -->
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div class="lg:col-span-4 lg:sticky lg:top-28">
+          <p class="etiqueta-seccion">Experiencia</p>
+          <h2 class="titulo-seccion">Mi trayectoria y crecimiento</h2>
+          <p class="text-sm text-slate-400 mt-4">
+            ${experiencia.length} puestos desde ${esc(primerAnio)}, del más reciente al primero.
+          </p>
+        </div>
+
+        <ol class="linea-tiempo lg:col-span-8 space-y-6">
+            ${bloquesExperiencia}
+        </ol>
       </div>
     </section>
 
@@ -386,11 +481,13 @@ export function render(perfil, opciones = {}) {
         Agrupadas según dónde las he aplicado, para que se distinga lo hecho en un empleo real
         de lo probado en laboratorio y de lo que solo he estudiado.
       </p>
-      <!-- Multi-columna y no grid: los grupos tienen tamaños muy distintos (producción trae siete
-           categorías, los demás una). Un grid alinearía filas y dejaría medio ancho vacío; las
-           columnas se reparten las tarjetas y se compensan solas.
-           Dos columnas y no tres: con cuatro tarjetas tan desiguales, la tercera queda vacía. -->
-      <div class="mt-8 columns-1 md:columns-2 gap-6">
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-xs text-slate-400">
+        ${leyendaHabilidades}
+      </ul>
+
+      <!-- Multi-columna y no grid: las tarjetas van de dos a siete etiquetas. Un grid alinearía
+           filas y dejaría huecos bajo las cortas; las columnas las empaquetan por altura. -->
+      <div class="mt-8 columns-1 md:columns-2 lg:columns-3 gap-5">
           ${bloquesHabilidades}
       </div>
     </section>
@@ -404,12 +501,10 @@ export function render(perfil, opciones = {}) {
             ${bloquesEducacion}
       </div>
 
-      <div class="tarjeta p-6 mt-6">
-        <h3 class="text-sm font-semibold text-white">Formación destacada</h3>
-        <ul class="mt-2">
-              ${destacadas.map(filaFormacion).join('\n              ')}
-        </ul>
-      </div>
+      <h3 class="text-base font-bold text-white mt-10">Formación destacada</h3>
+      <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            ${tarjetasDestacadas}
+      </ul>
 
       <details class="tarjeta p-6 mt-6">
         <summary class="text-sm font-semibold text-white cursor-pointer">

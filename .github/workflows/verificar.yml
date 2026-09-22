@@ -12,8 +12,11 @@ on:
       - 'scripts/**'
       - 'src/**'
       - 'public/assets/**'
+      # check-claims revisa también el JS con texto visible (chat.js, contacto.js).
+      - 'public/js/**'
       - 'package.json'
       - 'package-lock.json'
+      - 'vercel.json'
       - '.github/workflows/verificar.yml'
   workflow_dispatch:
 
@@ -25,8 +28,8 @@ jobs:
   verificar:
     runs-on: ubuntu-latest
 
-    # El propio job hace commit del README y del PDF. Sin esta condición, ese commit
-    # dispararía otra ejecución, que haría otro commit, y así indefinidamente.
+    # El propio job hace commit del README. Sin esta condición, ese commit dispararía otra
+    # ejecución, que haría otro commit, y así indefinidamente.
     if: github.actor != 'github-actions[bot]'
 
     permissions:
@@ -49,35 +52,32 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
-      - name: Validar profile.json
-        run: npm run validate
-
-      - name: Generar la web
-        run: npm run build:context && npm run build:css && npm run build:site
-
+      # En Ubuntu, --with-deps instala las librerías del sistema con apt. En Vercel, que corre
+      # sobre Amazon Linux, las instala el installCommand de vercel.json con dnf.
       - name: Instalar Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium --only-shell
 
-      - name: Regenerar el CV en PDF
-        run: npm run build:pdf
-
+      # El README va primero porque check-claims, al final de `npm run build`, también lo revisa.
       - name: Regenerar el README
         run: npm run build:readme
 
-      # check-claims va después de generarlo todo: revisa lo que se va a publicar,
-      # incluido el texto extraído del PDF, no lo que dicen las plantillas.
-      - name: Revisar las afirmaciones prohibidas
-        run: npm run check-claims
+      # El mismo comando que ejecuta Vercel: valida, genera el contexto, el CSS, el PDF y la web,
+      # y termina con check-claims sobre todo lo generado, incluido el texto extraído del PDF.
+      - name: Build completo (el mismo que Vercel)
+        run: npm run build
 
-      - name: Confirmar el README y el PDF si cambiaron
+      # Solo el README se confirma. El PDF ya no se versiona: lo genera cada build de Vercel.
+      # Además no es reproducible byte a byte (Chromium incrusta fecha e identificador), así que
+      # confirmarlo metía un commit nuevo en cada ejecución aunque el perfil no cambiara.
+      - name: Confirmar el README si cambió
         run: |
-          if git diff --quiet -- README.md public/cv-victor-lopez.pdf; then
+          if git diff --quiet -- README.md; then
             echo "Sin cambios que confirmar."
             exit 0
           fi
 
           git config user.name  'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add README.md public/cv-victor-lopez.pdf
-          git commit -m 'Regenera el README y el CV desde profile.json [skip ci]'
+          git add README.md
+          git commit -m 'Regenera el README desde profile.json [skip ci]'
           git push origin HEAD:${{ github.head_ref }}

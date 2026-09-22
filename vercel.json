@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "dnf install -y -q nss nspr nss-util atk at-spi2-atk at-spi2-core libX11 libxcb libXcomposite libXdamage libXext libXfixes libXrandr libxkbcommon mesa-libgbm alsa-lib dbus-libs && npm ci && npx playwright install chromium --only-shell",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/(.*)",

@@ -102,10 +102,22 @@ Problemas actuales en `api/chat-cv.js` y `public/script.js`:
   8. Contacto.
 ### Decisiones de Victor para la web (2026-09-21)
 
-- **Formulario de contacto: se elimina.** Hoy no envía nada; se reemplaza por botones directos de WhatsApp y `mailto:`.
+- ~~**Formulario de contacto: se elimina.**~~ Revertido el 2026-09-22, ver abajo.
 - **Teléfono: nunca como texto visible.** Solo accesible a través del botón de WhatsApp.
 - **Nombre: "Victor R. López"**, sin tilde en Victor, tal como está en el JSON. Aplica a toda salida.
 - **Tailwind:** CLI v3 fijado como devDependency, compilado en build. Sin CDN.
+
+### Decisiones de Victor para la web (2026-09-22)
+
+Sustituyen a las anteriores donde se contradigan.
+
+- **Formulario de contacto: vuelve.** Sin servidor: arma el texto y abre WhatsApp. Convive con los botones directos.
+- **Botón flotante de WhatsApp:** abajo a la izquierda (el asistente ocupa la derecha).
+- **Experiencia:** línea de tiempo con columna fija a la izquierda y círculos numerados. Sin las métricas de la web vieja ("+6 años", "99% de uptime"): no están respaldadas.
+- **Formación destacada:** cuadrícula de tarjetas con un ícono genérico por tema, nunca el logotipo del emisor.
+- **Habilidades:** una tarjeta por categoría con una etiqueta de evidencia; se conserva el agrupamiento por evidencia.
+- **Proyectos:** las tarjetas se igualan sintetizando el contenido de `profile.json`, no con trucos de maquetación.
+- **CV en PDF:** no se versiona. Lo genera el build de Vercel; su `installCommand` instala las librerías de Chromium con `dnf`.
 
 - [ ] Reemplazar el CDN "play" de Tailwind por CSS compilado con **Tailwind CLI v3 fijado**. Luego endurecer la CSP:
   - Quitar `unsafe-eval`.
@@ -126,13 +138,13 @@ Problemas actuales en `api/chat-cv.js` y `public/script.js`:
   - Resumen: `resumen.largo`.
   - Experiencia completa.
   - Proyectos: solo los de `mostrar: true`, máximo 3 (ERP Hub, Core ERP Suite, laboratorio OpenStack).
-  - Habilidades: solo las de `produccion`, más una línea de laboratorio.
+  - Habilidades: las de `produccion`, más una línea por cada otro tipo de evidencia (laboratorio, desarrollo asistido por IA y estudiado). Deben coincidir con la web.
   - Educación.
   - Formación: solo `destacar: true`, más la línea de `formacion_agrupada`.
   - Idiomas.
 - [ ] Crear `scripts/build-pdf.mjs` con Playwright (Chromium) que genere `public/cv-victor-lopez.pdf`.
-- [ ] En `.gitignore`, mantener `*.pdf` y agregar la excepción `!public/cv-victor-lopez.pdf`. Los PDF de certificados nunca se suben: uno de ellos muestra un documento de identidad.
-- [ ] Crear el workflow `.github/workflows/build-pdf.yml`: en cada push que toque `data/` o `templates/`, genera el PDF, corre `check-claims` y hace commit del PDF.
+- [ ] En `.gitignore`, mantener `*.pdf` **sin excepciones**: ningún PDF se versiona. El CV lo genera el build. Los PDF de certificados nunca se suben: uno de ellos muestra un documento de identidad.
+- [ ] Workflow `.github/workflows/verificar.yml`: en cada Pull Request, corre el mismo `npm run build` que Vercel (PDF incluido) y hace commit solo del README. El PDF no se confirma.
 - [ ] **Evitar el bucle de CI.** El workflow hace commit de archivos del propio repo, así que debe: (a) filtrar por `on.push.paths` (`data/**`, `templates/**`, `scripts/**`) y (b) ignorar sus propios commits — marcarlos con `[skip ci]` en el mensaje, o condicionar el job a que el autor no sea `github-actions[bot]`. Sin esto, cada commit del bot dispara otra ejecución.
 
 ## Fase 4 — README generado

@@ -5,8 +5,11 @@
  * Deja además build/cv-texto.txt con el texto extraído del documento, que es lo que revisa
  * check-claims: así se verifica lo que el PDF realmente dice, no lo que dice su plantilla.
  *
- * No forma parte de `npm run build` porque Vercel no tiene los navegadores de Playwright.
- * Lo ejecuta el workflow de GitHub Actions, y en local `npm run build:pdf`.
+ * Forma parte de `npm run build` y corre antes de build:site, que solo muestra el botón de
+ * descarga si el PDF existe. El PDF no se versiona: lo produce cada build.
+ *
+ * En Vercel, Chromium necesita librerías del sistema que su imagen (Amazon Linux 2023) no
+ * trae; las instala el installCommand de vercel.json. Detalle en docs/TECNICO.md.
  */
 import { readFileSync, writeFileSync, mkdirSync, statSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';

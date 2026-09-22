@@ -9,9 +9,10 @@ import { fecha, fechaCorta, esc } from '../scripts/lib/formato.mjs';
 
 /**
  * Los tres proyectos que van al CV, en este orden. El resto vive en la web.
- * erp-hub queda fuera mientras esté oculto; su lugar lo ocupa pasteleria.
+ * erp-hub queda fuera mientras esté oculto. variedades-hoannes sustituye a pasteleria,
+ * que pasó a mostrar: false el 2026-09-22.
  */
-const PROYECTOS_CV = ['core-erp-suite', 'pasteleria', 'lab-openstack'];
+const PROYECTOS_CV = ['core-erp-suite', 'variedades-hoannes', 'lab-openstack'];
 
 export function render(perfil, opciones = {}) {
   // fuentesEnLinea: una instancia por peso, ya recortada a los caracteres de este CV.
@@ -90,6 +91,7 @@ export function render(perfil, opciones = {}) {
   const produccion = habilidades.filter((h) => h.evidencia === 'produccion');
   const laboratorio = habilidades.filter((h) => h.evidencia === 'laboratorio');
   const conIa = habilidades.filter((h) => h.evidencia === 'proyecto_propio');
+  const estudiado = habilidades.filter((h) => h.evidencia === 'formacion');
 
   const filasHabilidades = produccion
     .map((h) => `<p><strong>${esc(h.categoria)}:</strong> ${esc(h.items.join(', '))}</p>`)
@@ -104,6 +106,13 @@ export function render(perfil, opciones = {}) {
   const lineaIa = conIa.length
     ? `<p class="matiz"><strong>Desarrollo asistido por IA:</strong> ${esc(
         conIa.flatMap((h) => h.items).join(', '),
+      )}</p>`
+    : '';
+
+  // Mismo rótulo que la web: las dos salidas deben decir lo mismo de cada tipo de evidencia.
+  const lineaEstudiado = estudiado.length
+    ? `<p class="matiz"><strong>Estudiado, sin experiencia laboral:</strong> ${esc(
+        estudiado.flatMap((h) => h.items).join(', '),
       )}</p>`
     : '';
 
@@ -227,6 +236,7 @@ export function render(perfil, opciones = {}) {
       ${filasHabilidades}
       ${lineaLaboratorio}
       ${lineaIa}
+      ${lineaEstudiado}
 </section>
 
 <section>
