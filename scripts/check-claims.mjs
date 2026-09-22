@@ -121,6 +121,7 @@ if (reglasHuerfanas.length) {
 const OBJETIVOS = [
   'public/index.html',
   'public/js/chat.js',
+  'public/js/contacto.js',
   'public/js/cerebro-local.generado.js',
   'public/js/contacto.generado.js',
   'api/_contexto.generado.js',
