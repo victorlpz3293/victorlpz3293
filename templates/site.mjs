@@ -378,6 +378,10 @@ export function render(perfil, opciones = {}) {
   <link rel="preload" href="assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/estilo.css">
   <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 
 <body>
