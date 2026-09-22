@@ -88,7 +88,14 @@ export function render(perfil) {
 
   const niveles = nivelesDeFormacion(perfil);
   const enLinea = (lista) =>
-    lista.map((f) => `${f.nombre} (${f.institucion.split(' —')[0]})`).join(' · ');
+    lista
+      .map((f) => {
+        const antes = (f.ediciones_anteriores ?? [])
+          .map((e) => `, antes en ${e.fecha.split('-')[0]}`)
+          .join('');
+        return `${f.nombre} (${f.institucion.split(' —')[0]}${antes})`;
+      })
+      .join(' · ');
 
   // Nivel 1: los estudios formales. Faltaban en el README, aunque la web, el CV y el
   // asistente sí los decían.

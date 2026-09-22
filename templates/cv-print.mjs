@@ -138,7 +138,11 @@ export function render(perfil, opciones = {}) {
   const destacadas = niveles.destacadas
     .map((f) => {
       const horas = f.horas ? `, ${f.horas} h` : '';
-      return `<li>${esc(f.nombre)} — ${esc(f.institucion)} (${esc(fecha(f.fecha))}${horas})</li>`;
+      // Si se cursó más de una vez, se dice; la entrada principal es la edición vigente.
+      const antes = (f.ediciones_anteriores ?? [])
+        .map((e) => ` · antes en ${fecha(e.fecha)}`)
+        .join('');
+      return `<li>${esc(f.nombre)} — ${esc(f.institucion)} (${esc(fecha(f.fecha))}${horas})${esc(antes)}</li>`;
     })
     .join('\n        ');
 

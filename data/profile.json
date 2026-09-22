@@ -193,7 +193,17 @@
       "tipo": "curso",
       "fecha": "2026-04",
       "destacar": true,
-      "acreditacion": "evaluacion"
+      "acreditacion": "evaluacion",
+      "id_credencial": "a7cd69ba-2b72-4ff5-8072-b4b33cdfd407",
+      "instructor": "Vinitri Leal",
+      "ediciones_anteriores": [
+        {
+          "nombre": "CCNAv7: Introducción a Redes (ITN)",
+          "institucion": "Cisco Networking Academy — Universidad Miguel Hernández (España)",
+          "fecha": "2023-12",
+          "instructor": "Salvador Alcaraz"
+        }
+      ]
     },
     {
       "nombre": "Ciberseguridad y Hacking Ético",
@@ -248,14 +258,6 @@
       "fecha": "2024-12",
       "id_credencial": "FBLB0R0RKKAY",
       "vence": false,
-      "destacar": true,
-      "acreditacion": "evaluacion"
-    },
-    {
-      "nombre": "CCNAv7: Introducción a Redes (ITN)",
-      "institucion": "Cisco Networking Academy — Universidad Miguel Hernández (España)",
-      "tipo": "curso",
-      "fecha": "2023-12",
       "destacar": true,
       "acreditacion": "evaluacion"
     },

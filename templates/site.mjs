@@ -263,6 +263,20 @@ export function render(perfil, opciones = {}) {
     )
     .join('\n\n            ');
 
+  /**
+   * Ediciones anteriores de una misma formación: se cursó más de una vez. La entrada principal
+   * es la vigente; esto deja ver que hubo una anterior sin duplicar la tarjeta.
+   */
+  const ediciones = (f) =>
+    (f.ediciones_anteriores ?? [])
+      .map(
+        (e) =>
+          `<p class="text-[11px] text-slate-600 mt-1">Antes cursado en ${esc(fecha(e.fecha))} — ${esc(
+            e.institucion,
+          )}${e.instructor ? ` · con ${esc(e.instructor)}` : ''} (${esc(e.nombre)})</p>`,
+      )
+      .join('');
+
   const filaFormacion = (f) => {
     //  : espacio de no separación, para que la "h" no quede sola en otra línea.
     const horas = f.horas ? ` · ${f.horas} h` : '';
@@ -272,6 +286,7 @@ export function render(perfil, opciones = {}) {
     return `<li class="py-3 border-b border-slate-800 last:border-0">
                 <p class="text-sm text-slate-200">${esc(f.nombre)}</p>
                 <p class="text-xs text-slate-500 mt-0.5">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}${credencial}${instructor}</p>
+                ${ediciones(f)}
               </li>`;
   };
 
@@ -294,6 +309,7 @@ export function render(perfil, opciones = {}) {
                 <p class="text-sm font-semibold text-white leading-snug">${esc(f.nombre)}</p>
                 <p class="text-xs text-slate-500 mt-1">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}</p>
                 ${credencial}
+                ${ediciones(f)}
               </div>
             </li>`;
     })

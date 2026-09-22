@@ -69,7 +69,10 @@ bloques.push(
 const niveles = nivelesDeFormacion(perfil);
 const conHoras = (f) =>
   `- ${f.nombre} — ${f.institucion} (${fecha(f.fecha)}${f.horas ? `, ${f.horas} h` : ''})` +
-  `${f.instructor ? `, impartida por ${f.instructor}` : ''}.`;
+  `${f.instructor ? `, impartida por ${f.instructor}` : ''}.` +
+  (f.ediciones_anteriores ?? [])
+    .map((e) => ` Ya lo había cursado antes: ${e.nombre} — ${e.institucion} (${fecha(e.fecha)}).`)
+    .join('');
 
 bloques.push(
   `${NIVELES_FORMACION.superior.toUpperCase()} (nivel 1: estudios formales)\n` +
