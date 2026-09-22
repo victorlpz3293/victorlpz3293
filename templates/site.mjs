@@ -451,15 +451,11 @@ export function render(perfil, opciones = {}) {
         Los proyectos de software los desarrollo con asistencia de IA. Mi aporte está en el diseño,
         la infraestructura, el despliegue y la operación.
       </p>
-      <!-- items-start: cada tarjeta conserva su alto natural. Las descripciones van de 75 a 355
-           caracteres y unas traen lista de puntos destacados; con el estirado por omisión, las
-           tarjetas cortas quedaban con cientos de píxeles en blanco al compartir fila con la más alta. -->
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-          ${bloquesProyectos}
-      </div>
+      <!-- NITSC va antes de la cuadrícula: es la marca bajo la que se desarrollan los proyectos,
+           así que ancla la sección en vez de cerrarla. -->
       ${
         nitsc
-          ? `<div class="tarjeta p-6 mt-6">
+          ? `<div class="tarjeta p-6 mt-8">
             <h3 class="text-base font-bold text-white">${esc(nitsc.nombre)}</h3>
             <p class="text-sm text-slate-400 mt-2 leading-relaxed">${esc(nitsc.presentacion)}</p>
             ${
@@ -471,6 +467,17 @@ export function render(perfil, opciones = {}) {
           </div>`
           : ''
       }
+
+      <!-- Dos columnas y no tres. Con tres, cuatro proyectos dejaban la segunda fila con una
+           tarjeta y dos huecos, y la primera fila con 121 px de desnivel. Con dos, las filas se
+           llenan, cada tarjeta es más ancha, el texto envuelve menos y el desnivel baja a 62 y
+           34 px. Si algún día hay seis proyectos visibles, vuelve a tener sentido revisarlo.
+
+           items-start: cada tarjeta conserva su alto natural, para que las cortas no queden con
+           espacio en blanco al compartir fila con una más alta. -->
+      <div class="mt-6 grid sm:grid-cols-2 gap-6 items-start">
+          ${bloquesProyectos}
+      </div>
     </section>
 
     <!-- Habilidades -->
