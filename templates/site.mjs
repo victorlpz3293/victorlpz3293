@@ -267,9 +267,11 @@ export function render(perfil, opciones = {}) {
     //  : espacio de no separación, para que la "h" no quede sola en otra línea.
     const horas = f.horas ? ` · ${f.horas} h` : '';
     const credencial = f.id_credencial ? ` · ID ${esc(f.id_credencial)}` : '';
+    // Cuando no hay ID de credencial, quien imparte es la referencia del certificado.
+    const instructor = f.instructor ? ` · con ${esc(f.instructor)}` : '';
     return `<li class="py-3 border-b border-slate-800 last:border-0">
                 <p class="text-sm text-slate-200">${esc(f.nombre)}</p>
-                <p class="text-xs text-slate-500 mt-0.5">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}${credencial}</p>
+                <p class="text-xs text-slate-500 mt-0.5">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}${credencial}${instructor}</p>
               </li>`;
   };
 
@@ -299,10 +301,12 @@ export function render(perfil, opciones = {}) {
 
   const agrupada = niveles.agrupada
     .map(
-      (g) =>
-        `<p class="text-xs text-slate-500 mt-4">${esc(g.nombre)} — ${esc(g.institucion)}${
-          g.periodo ? ` (${esc(g.periodo)})` : ''
-        }.</p>`,
+      (g) => `<div class="mt-4 pt-4 border-t border-slate-800">
+                <p class="text-sm text-slate-200">${esc(g.nombre)}</p>
+                <p class="text-xs text-slate-500 mt-0.5">${esc(g.institucion)}${
+                  g.periodo ? ` · ${esc(g.periodo)}` : ''
+                }</p>
+              </div>`,
     )
     .join('\n          ');
 
@@ -525,12 +529,12 @@ export function render(perfil, opciones = {}) {
       </ul>
       ${
         niveles.resto.length
-          ? `<div class="tarjeta p-6 mt-4">
-        <h4 class="text-sm font-semibold text-white">Otros ${niveles.resto.length} cursos con evaluación</h4>
+          ? `<details class="tarjeta p-6 mt-4">
+        <summary class="resumen-plegable">Otros ${niveles.resto.length} cursos con evaluación</summary>
         <ul class="mt-2">
               ${niveles.resto.map(filaFormacion).join('\n              ')}
         </ul>
-      </div>`
+      </details>`
           : ''
       }
 
@@ -540,12 +544,15 @@ export function render(perfil, opciones = {}) {
         <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.asistencia)}</h3>
         <span class="text-xs text-slate-500">constancia de participación, sin evaluación</span>
       </div>
-      <div class="tarjeta p-6 mt-4">
-        <ul>
+      <details class="tarjeta p-6 mt-4">
+        <summary class="resumen-plegable">
+          ${niveles.asistencia.length + niveles.agrupada.reduce((n, g) => n + (g.incluye?.length ?? 1), 0)} cursos, talleres y jornadas
+        </summary>
+        <ul class="mt-2">
               ${niveles.asistencia.map(filaFormacion).join('\n              ')}
         </ul>
         ${agrupada}
-      </div>
+      </details>
 
       <div class="tarjeta p-6 mt-6">
         <h3 class="text-sm font-semibold text-white">Idiomas</h3>

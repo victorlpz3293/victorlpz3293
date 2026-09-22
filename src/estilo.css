@@ -155,6 +155,12 @@
   .enlace-nav {
     @apply text-sm text-slate-400 hover:text-white transition-colors;
   }
+
+  /* Resumen de una tarjeta plegable. El texto sigue en el HTML aunque esté cerrada,
+     así que buscadores y lectores de pantalla lo encuentran igual. */
+  .resumen-plegable {
+    @apply cursor-pointer text-sm font-semibold text-white marker:text-marca-cyan hover:text-marca-cyan transition-colors;
+  }
 }
 
 /* --- Asistente --- */

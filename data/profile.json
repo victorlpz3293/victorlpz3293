@@ -178,12 +178,32 @@
       "acreditacion": "evaluacion"
     },
     {
+      "nombre": "IA de 0 a Agentes",
+      "institucion": "BIG school",
+      "tipo": "jornada",
+      "acreditacion": "asistencia",
+      "fecha": "2026-05",
+      "horas": 6,
+      "instructor": "Jon Hernández",
+      "destacar": false
+    },
+    {
       "nombre": "CCNA: Introducción a Redes (ITN)",
       "institucion": "Cisco Networking Academy — EDUTEK",
       "tipo": "curso",
       "fecha": "2026-04",
       "destacar": true,
       "acreditacion": "evaluacion"
+    },
+    {
+      "nombre": "Ciberseguridad y Hacking Ético",
+      "institucion": "BIG school",
+      "tipo": "jornada",
+      "acreditacion": "asistencia",
+      "fecha": "2026-04",
+      "horas": 6,
+      "instructor": "Mario Álvarez",
+      "destacar": false
     },
     {
       "nombre": "Power BI",
@@ -202,6 +222,16 @@
       "horas": 22,
       "destacar": true,
       "acreditacion": "evaluacion"
+    },
+    {
+      "nombre": "Desarrollo con IA: de 0 a Producción",
+      "institucion": "BIG school",
+      "tipo": "jornada",
+      "acreditacion": "asistencia",
+      "fecha": "2026-03",
+      "horas": 6,
+      "instructor": "Brais Moure",
+      "destacar": false
     },
     {
       "nombre": "Conceptos Básicos de Hardware",
@@ -410,15 +440,12 @@
   ],
   "formacion_agrupada": [
     {
-      "nombre": "Jornadas de IA aplicada y ciberseguridad (8 jornadas de 6 h, certificados de asistencia)",
+      "nombre": "Jornadas de IA aplicada y ciberseguridad (5 jornadas de 6 h, certificados de asistencia)",
       "institucion": "BIG school",
       "periodo": "2026-01 a 2026-06",
       "incluye": [
         "IA 2026",
-        "Desarrollo con IA: de 0 a Producción",
         "Desarrollo con IA: Programa con Agentes",
-        "IA de 0 a Agentes",
-        "Ciberseguridad y Hacking Ético",
         "Data Science con IA",
         "Marketing Digital con IA",
         "SEO para IA"

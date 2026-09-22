@@ -74,7 +74,7 @@ ISO/IEC 27001:2022 Information Security Associate (SkillFront) · CCNA: Introduc
 
 <sub>Constancia de participación, sin evaluación.</sub>
 
-Conceptos Básicos de Hardware (Cisco Networking Academy) · Securitización de Equipos con las Bases de CIS Control (Capacitación USACH (Cybersecurity Week)) · ISEC Infosecurity Managua (I-SEC Information Security) · Introduction to Packet Tracer (Cisco Networking Academy) · IT Fundamentals (Udemy) · Conviértete en especialista en soporte IT (LinkedIn Learning) · NDG Linux Unhatched (Cisco Networking Academy) · Introduction to Cybersecurity (Cisco Networking Academy) · Jornadas de IA aplicada y ciberseguridad (8 jornadas de 6 h, certificados de asistencia) — BIG school
+IA de 0 a Agentes (BIG school) · Ciberseguridad y Hacking Ético (BIG school) · Desarrollo con IA: de 0 a Producción (BIG school) · Conceptos Básicos de Hardware (Cisco Networking Academy) · Securitización de Equipos con las Bases de CIS Control (Capacitación USACH (Cybersecurity Week)) · ISEC Infosecurity Managua (I-SEC Information Security) · Introduction to Packet Tracer (Cisco Networking Academy) · IT Fundamentals (Udemy) · Conviértete en especialista en soporte IT (LinkedIn Learning) · NDG Linux Unhatched (Cisco Networking Academy) · Introduction to Cybersecurity (Cisco Networking Academy) · Jornadas de IA aplicada y ciberseguridad (5 jornadas de 6 h, certificados de asistencia) — BIG school
 
 ## Contacto
 

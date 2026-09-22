@@ -197,6 +197,10 @@
           "fecha": { "$ref": "#/$defs/mesOAnio" },
           "horas": { "type": "number", "exclusiveMinimum": 0 },
           "id_credencial": { "$ref": "#/$defs/textoNoVacio" },
+          "instructor": {
+            "$ref": "#/$defs/textoNoVacio",
+            "description": "Quien imparte o dirige la formación. Sirve de referencia cuando el certificado no trae ID de credencial."
+          },
           "verificacion": { "$ref": "#/$defs/textoNoVacio" },
           "calificacion": { "$ref": "#/$defs/textoNoVacio" },
           "vence": { "type": "boolean" },

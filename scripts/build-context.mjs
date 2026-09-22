@@ -67,7 +67,9 @@ bloques.push(
 // README, y con la diferencia explicada: así no puede presentar una charla como si fuera un
 // curso aprobado.
 const niveles = nivelesDeFormacion(perfil);
-const conHoras = (f) => `- ${f.nombre} — ${f.institucion} (${fecha(f.fecha)}${f.horas ? `, ${f.horas} h` : ''}).`;
+const conHoras = (f) =>
+  `- ${f.nombre} — ${f.institucion} (${fecha(f.fecha)}${f.horas ? `, ${f.horas} h` : ''})` +
+  `${f.instructor ? `, impartida por ${f.instructor}` : ''}.`;
 
 bloques.push(
   `${NIVELES_FORMACION.superior.toUpperCase()} (nivel 1: estudios formales)\n` +
