@@ -26,6 +26,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Los controles nativos (la lista desplegada del select, el cursor de los campos)
+       se pintan en claro si no se declara el esquema, y desentonan con el sitio. */
+    color-scheme: dark;
   }
 
   body {
@@ -70,8 +73,20 @@
     @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* El hover vive en la clase base para que lo tengan todas las tarjetas del sitio
+     sin repetirlo en cada plantilla. Quien no quiera el efecto, que no use .tarjeta. */
   .tarjeta {
-    @apply bg-slate-900/60 border border-slate-800 rounded-2xl;
+    @apply bg-slate-900/60 border border-slate-800 rounded-2xl shadow-xl
+           transition-all duration-300 hover:bg-slate-900 hover:border-marca-cyan/40 hover:-translate-y-1;
+  }
+
+  .etiqueta-campo {
+    @apply block text-xs font-semibold uppercase tracking-wider text-slate-400;
+  }
+
+  .campo {
+    @apply block w-full rounded-xl bg-marca-hondo border border-slate-800 px-4 py-3 text-sm text-white
+           placeholder-slate-600 outline-none transition-colors focus:border-marca-cyan;
   }
 
   .etiqueta-seccion {
@@ -154,6 +169,68 @@
 
 .chat-boton-mail {
   @apply block text-center px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-semibold transition-colors;
+}
+
+/* --- Formulario de contacto --- */
+
+.aviso-ok {
+  @apply bg-green-500/10 border border-green-500/20 text-green-300;
+}
+
+.aviso-error {
+  @apply bg-amber-500/10 border border-amber-500/20 text-amber-300;
+}
+
+/* --- Botón flotante de WhatsApp --- */
+
+.grupo-flotante {
+  position: relative;
+}
+
+.flotante-wa {
+  animation: rebote-lento 3s ease-in-out infinite;
+}
+
+.flotante-wa:hover {
+  animation-play-state: paused;
+}
+
+@keyframes rebote-lento {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* El globo solo aparece con el puntero o el foco de teclado; en táctil no estorba. */
+.globo-flotante {
+  @apply absolute left-16 whitespace-nowrap rounded-lg border border-slate-800 bg-slate-900
+         px-3 py-1.5 text-[10px] font-semibold tracking-wide text-slate-200 shadow-xl
+         opacity-0 scale-0 origin-left transition-all duration-200 pointer-events-none;
+}
+
+.grupo-flotante:hover .globo-flotante,
+.grupo-flotante:focus-visible .globo-flotante {
+  @apply opacity-100 scale-100;
+}
+
+/* Quien pidió menos movimiento no recibe rebote ni desplazamiento al pasar el puntero:
+   los cambios de color y borde se conservan, que son los que comunican el estado. */
+@media (prefers-reduced-motion: reduce) {
+  .flotante-wa {
+    animation: none;
+  }
+
+  .tarjeta {
+    @apply transition-colors;
+  }
+
+  .tarjeta:hover {
+    transform: none;
+  }
 }
 
 @media print {

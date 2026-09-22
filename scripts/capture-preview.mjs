@@ -54,8 +54,11 @@ const pagina = await navegador.newPage({ viewport: { width: 1280, height: 800 } 
 await pagina.goto('http://localhost:4180/', { waitUntil: 'networkidle' });
 await pagina.evaluate(() => document.fonts.ready);
 
-// Sin el asistente flotante: la captura es del sitio, no de su widget.
-await pagina.evaluate(() => document.querySelector('#toggle-chat')?.closest('div')?.remove());
+// Sin los botones flotantes (asistente y WhatsApp): la captura es del sitio, no de sus widgets.
+await pagina.evaluate(() => {
+  document.querySelector('#toggle-chat')?.closest('div')?.remove();
+  document.querySelector('.flotante-wa')?.closest('div')?.remove();
+});
 await pagina.screenshot({ path: salida });
 
 await navegador.close();

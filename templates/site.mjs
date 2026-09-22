@@ -138,7 +138,7 @@ export function render(perfil, opciones = {}) {
               ${marca}
             </div>
             ${contexto}
-            <p class="text-sm text-slate-400 mt-3 leading-relaxed flex-grow">${esc(proyecto.descripcion)}</p>
+            <p class="text-sm text-slate-400 mt-3 leading-relaxed">${esc(proyecto.descripcion)}</p>
             ${destacable}
             <div class="flex flex-wrap gap-1.5 mt-4">${proyecto.stack
               .map((s) => `<span class="insignia">${esc(s)}</span>`)
@@ -171,7 +171,7 @@ export function render(perfil, opciones = {}) {
         )
         .join('\n              ');
 
-      return `<div class="tarjeta p-6">
+      return `<div class="tarjeta p-6 break-inside-avoid mb-6">
               <p class="etiqueta-seccion">${esc(ROTULO_EVIDENCIA[tipo])}</p>
               <div class="mt-2">
               ${filas}
@@ -356,7 +356,10 @@ export function render(perfil, opciones = {}) {
         Los proyectos de software los desarrollo con asistencia de IA. Mi aporte está en el diseño,
         la infraestructura, el despliegue y la operación.
       </p>
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- items-start: cada tarjeta conserva su alto natural. Las descripciones van de 75 a 355
+           caracteres y unas traen lista de puntos destacados; con el estirado por omisión, las
+           tarjetas cortas quedaban con cientos de píxeles en blanco al compartir fila con la más alta. -->
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
           ${bloquesProyectos}
       </div>
       ${
@@ -383,7 +386,11 @@ export function render(perfil, opciones = {}) {
         Agrupadas según dónde las he aplicado, para que se distinga lo hecho en un empleo real
         de lo probado en laboratorio y de lo que solo he estudiado.
       </p>
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
+      <!-- Multi-columna y no grid: los grupos tienen tamaños muy distintos (producción trae siete
+           categorías, los demás una). Un grid alinearía filas y dejaría medio ancho vacío; las
+           columnas se reparten las tarjetas y se compensan solas.
+           Dos columnas y no tres: con cuatro tarjetas tan desiguales, la tercera queda vacía. -->
+      <div class="mt-8 columns-1 md:columns-2 gap-6">
           ${bloquesHabilidades}
       </div>
     </section>
@@ -431,19 +438,75 @@ export function render(perfil, opciones = {}) {
         ¿Una vacante, una colaboración o una consulta técnica? Escríbeme por el canal que prefieras.
       </p>
 
-      <div class="flex flex-wrap gap-3 mt-8">
-        <a class="boton-principal" href="${esc(enlaceWa)}" target="_blank" rel="noopener noreferrer">
-          ${icono('whatsapp')} WhatsApp
-        </a>
-        <a class="boton-secundario" href="mailto:${esc(identidad.email)}">
-          ${icono('correo')} ${esc(identidad.email)}
-        </a>
-        <a class="boton-secundario" href="${esc(identidad.linkedin)}" target="_blank" rel="noopener noreferrer">
-          ${icono('linkedin')} LinkedIn
-        </a>
-        <a class="boton-secundario" href="${esc(identidad.github)}" target="_blank" rel="noopener noreferrer">
-          ${icono('github')} GitHub
-        </a>
+      <div class="mt-8 grid lg:grid-cols-5 gap-8 items-start">
+        <!-- El formulario no envía nada a ningún servidor: arma el texto y abre WhatsApp.
+             Por eso no hay backend, ni almacenamiento, ni datos de terceros en tránsito. -->
+        <form id="formulario-contacto" class="tarjeta p-6 sm:p-8 lg:col-span-3 space-y-5" novalidate
+              data-whatsapp="${esc(whatsapp)}">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="etiqueta-campo" for="campo-nombre">Nombre completo</label>
+              <input id="campo-nombre" name="nombre" type="text" required maxlength="80"
+                     autocomplete="name" placeholder="Ej. Juan Pérez" class="campo mt-2">
+            </div>
+            <div>
+              <label class="etiqueta-campo" for="campo-correo">Correo electrónico</label>
+              <input id="campo-correo" name="correo" type="email" required maxlength="120"
+                     autocomplete="email" placeholder="ejemplo@correo.com" class="campo mt-2">
+            </div>
+          </div>
+
+          <div>
+            <label class="etiqueta-campo" for="campo-motivo">Motivo de contacto</label>
+            <select id="campo-motivo" name="motivo" required class="campo mt-2">
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Oportunidad laboral">Oportunidad laboral</option>
+              <option value="Propuesta de colaboración">Propuesta de colaboración</option>
+              <option value="Consulta técnica">Consulta técnica</option>
+              <option value="Saludar y conectar">Saludar y conectar</option>
+              <option value="Otro asunto">Otro asunto</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="etiqueta-campo" for="campo-mensaje">Mensaje</label>
+            <textarea id="campo-mensaje" name="mensaje" rows="5" required maxlength="1200"
+                      placeholder="Cuéntame en qué puedo ayudarte." class="campo mt-2 resize-none"></textarea>
+          </div>
+
+          <button class="boton-principal w-full" type="submit">
+            ${icono('whatsapp')} Enviar por WhatsApp
+          </button>
+
+          <p class="text-xs text-slate-500">
+            Al enviar se abre WhatsApp con el mensaje ya escrito. Nada se guarda en este sitio.
+          </p>
+
+          <p id="aviso-contacto" class="hidden text-sm rounded-xl px-4 py-3" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="lg:col-span-2">
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Si prefieres, escríbeme directamente por cualquiera de estos canales.
+          </p>
+          <div class="flex flex-col gap-3 mt-5">
+            <a class="boton-principal" href="${esc(enlaceWa)}" target="_blank" rel="noopener noreferrer">
+              ${icono('whatsapp')} WhatsApp
+            </a>
+            <a class="boton-secundario" href="mailto:${esc(identidad.email)}">
+              ${icono('correo')} ${esc(identidad.email)}
+            </a>
+            <a class="boton-secundario" href="${esc(identidad.linkedin)}" target="_blank" rel="noopener noreferrer">
+              ${icono('linkedin')} LinkedIn
+            </a>
+            <a class="boton-secundario" href="${esc(identidad.github)}" target="_blank" rel="noopener noreferrer">
+              ${icono('github')} GitHub
+            </a>
+          </div>
+          <p class="flex items-center gap-2 text-sm text-slate-500 mt-6">
+            ${icono('ubicacion', 'w-4 h-4')} ${esc(identidad.ubicacion)}
+          </p>
+        </div>
       </div>
     </section>
   </main>
@@ -456,6 +519,17 @@ export function render(perfil, opciones = {}) {
       </p>
     </div>
   </footer>
+
+  <!-- WhatsApp flotante. Abajo a la izquierda: el asistente ocupa la esquina derecha. -->
+  <div class="fixed bottom-6 left-6 z-40 no-imprimir">
+    <a class="grupo-flotante flotante-wa flex items-center justify-center w-14 h-14 rounded-full
+              bg-green-600 hover:bg-green-500 text-white shadow-2xl transition-colors"
+       href="${esc(enlaceWa)}" target="_blank" rel="noopener noreferrer"
+       aria-label="Escribir por WhatsApp">
+      ${icono('whatsapp', 'w-7 h-7')}
+      <span class="globo-flotante">Conectar por WhatsApp</span>
+    </a>
+  </div>
 
   <!-- Asistente -->
   <div class="fixed bottom-6 right-6 z-50 no-imprimir">
