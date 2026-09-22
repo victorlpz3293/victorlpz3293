@@ -267,14 +267,29 @@ export function render(perfil, opciones = {}) {
    * Ediciones anteriores de una misma formación: se cursó más de una vez. La entrada principal
    * es la vigente; esto deja ver que hubo una anterior sin duplicar la tarjeta.
    */
-  const ediciones = (f) =>
+  /**
+   * En las tarjetas de la cuadrícula va la versión compacta: son estrechas y un párrafo largo
+   * dispara su altura. La versión completa, con instructor, queda para la lista y el asistente.
+   *
+   * De la institución se toma lo que va tras el guion largo, que es la academia concreta
+   * ("Cisco Networking Academy — Universidad Miguel Hernández" → "Universidad Miguel Hernández"):
+   * el programa ya se ve en la línea principal, lo que distingue a la edición anterior es dónde.
+   */
+  const academiaDe = (nombre) =>
+    nombre.includes(' — ') ? nombre.split(' — ').slice(1).join(' — ') : nombre;
+
+  const ediciones = (f, compacto = false) =>
     (f.ediciones_anteriores ?? [])
-      .map(
-        (e) =>
-          `<p class="text-[11px] text-slate-600 mt-1">Antes cursado en ${esc(fecha(e.fecha))} — ${esc(
-            e.institucion,
-          )}${e.instructor ? ` · con ${esc(e.instructor)}` : ''} (${esc(e.nombre)})</p>`,
-      )
+      .map((e) => {
+        const texto = compacto
+          ? `Antes: ${esc(e.nombre.split(':')[0])} · ${esc(fechaCorta(e.fecha))} · ${esc(
+              academiaDe(e.institucion),
+            )}`
+          : `Antes cursado en ${esc(fecha(e.fecha))} — ${esc(e.institucion)}${
+              e.instructor ? ` · con ${esc(e.instructor)}` : ''
+            } (${esc(e.nombre)})`;
+        return `<p class="text-[11px] text-slate-600 mt-1">${texto}</p>`;
+      })
       .join('');
 
   const filaFormacion = (f) => {
@@ -309,7 +324,7 @@ export function render(perfil, opciones = {}) {
                 <p class="text-sm font-semibold text-white leading-snug">${esc(f.nombre)}</p>
                 <p class="text-xs text-slate-500 mt-1">${esc(f.institucion)} · ${esc(fecha(f.fecha))}${horas}</p>
                 ${credencial}
-                ${ediciones(f)}
+                ${ediciones(f, true)}
               </div>
             </li>`;
     })
@@ -540,7 +555,9 @@ export function render(perfil, opciones = {}) {
         <h3 class="text-base font-bold text-white">${esc(NIVELES_FORMACION.evaluacion)}</h3>
         <span class="text-xs text-slate-500">${niveles.evaluacion.length} en total · hubo examen o trabajo calificado</span>
       </div>
-      <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- items-start: sin él, el grid estira las cuatro tarjetas de cada fila a la altura de
+           la más alta, y una sola con texto de más deja huecos en las otras tres. -->
+      <ul class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 items-start">
             ${tarjetasDestacadas}
       </ul>
       ${
