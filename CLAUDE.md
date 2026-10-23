@@ -31,6 +31,12 @@ Parte del contenido actual fue generado por IA sin verificar e incluye afirmacio
 6. **Proyectos con desarrollo asistido por IA** se rotulan como tal: *"Desarrollado con asistencia de IA"*.
 7. **Privacidad.** No publicar la dirección de casa, IPs internas, dominios internos de la empresa, números de serie ni documentos de identidad. El detalle está en `_privado/observaciones.md`.
 
+## Forma de trabajo de Claude
+
+- Usar siempre subagentes en paralelo (multi-agente) para agilizar: un subagente por repositorio o por tarea independiente, y reunir sus resultados al final.
+- Las tareas muy pequeñas, o las que dependen del resultado de un paso anterior, se hacen directamente.
+- Los subagentes solo leen cuando la tarea es una revisión; los cambios se validan (lint, tipos, pruebas, build) antes de hacer push.
+
 ## Fase M — Construcción limpia y entrega al repo de perfil (última fase)
 
 **Método (sustituye al plan anterior de mover código entre repos):** no se migra nada. Todo se construye desde cero en la carpeta de trabajo `victorlpz3293-v2/`, y solo al final se entrega al repo `victorlpz3293`.

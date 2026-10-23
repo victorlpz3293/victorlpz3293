@@ -363,3 +363,56 @@ dominio se mueve solo cuando el proyecto nuevo ya está probado.
 ### Cabeceras de seguridad
 
 Se definen en [`vercel.json`](../vercel.json) y se aplican a todas las rutas.
+
+## Seguridad: Node.js y dependencias (2026-10-23)
+
+### Aviso de seguridad de Node.js del 2026-10-21
+
+Node.js publicó correcciones para 10 CVE; las versiones corregidas son 22.23.4, 24.22.1 y 26.12.1.
+Fuente: <https://nodejs.org/en/blog/vulnerability/october-2026-security-releases>.
+
+- Este repositorio ya usaba Node 24 (`engines.node: "24.x"` en `package.json` y
+  `node-version: '24'` en el workflow), así que no requirió cambio de versión.
+- En Vercel basta con volver a desplegar para que tome la 24.22.1 o posterior.
+- Exposición: `api/chat-cv.js` llama a Gemini con `@google/generative-ai`, que hace `fetch` a un
+  host fijo de Google. El código no usa `dns`, `zlib` ni `randomUUID`. Riesgo estimado: bajo a
+  medio.
+- En `.github/workflows/verificar.yml` se agregó `check-latest: true` a `setup-node`: sin él, el
+  runner puede usar una 24.x guardada en caché que no trae el parche.
+
+### Revisión de dependencias (no aplicada)
+
+Resultado de `npm audit`:
+
+- Dependencias de producción: 0 vulnerabilidades.
+- Árbol completo: 9 (7 altas, 2 moderadas), todas en herramientas de build:
+  - `sharp` 0.35.4 (GHSA-wq5f-xc86-pv6w), corregida en 0.35.5. Solo la usa `npm run assets`, que
+    se ejecuta a mano.
+  - `source-map-js` 1.2.1, corregida en 1.2.2.
+  - `braces` 3.0.3, sin parche publicado; llega a través de Tailwind 3.
+  - `postcss-selector-parser` 6.1.4; la versión corregida solo se obtiene con Tailwind 4.
+
+Paquetes desactualizados o a revisar:
+
+- `sharp` (última 0.35.5) y `playwright` (última 1.64.1).
+- `@google/generative-ai` 0.21.0 es el SDK legado de Google, sin publicaciones desde 2025-04. Su
+  reemplazo es `@google/genai`.
+- `tailwindcss` 3.4.19, rama v3-lts. Se mantiene por la decisión de usar el CLI v3.
+
+Otros riesgos observados:
+
+- `@vercel/analytics` y `@vercel/speed-insights` están declarados pero no se usan.
+- El `installCommand` de `vercel.json` instala paquetes con `dnf` sin fijar versiones.
+- Las acciones de GitHub se referencian por etiqueta (`@v4`), no por SHA.
+
+### Propuesta pendiente (decide Victor)
+
+- Cambios seguros: `npm audit fix`, actualizar `playwright` a 1.64.1 y quitar los paquetes
+  `@vercel/*` sin uso.
+- Cambios que tocan código: migrar `api/chat-cv.js` a `@google/genai`, y decidir entre aceptar
+  `braces` y `postcss-selector-parser` como riesgo limitado al build o pasar a Tailwind v4.
+
+### Pasos tras el merge
+
+1. En Vercel: Settings → Build and Deployment → Node.js Version = 24.x, y volver a desplegar.
+2. Revisar en el log del build que la versión de Node sea 24.22.1 o posterior.
