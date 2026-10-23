@@ -412,6 +412,37 @@ Otros riesgos observados:
 - Cambios que tocan código: migrar `api/chat-cv.js` a `@google/genai`, y decidir entre aceptar
   `braces` y `postcss-selector-parser` como riesgo limitado al build o pasar a Tailwind v4.
 
+### Cambios aplicados (niveles 1 y 2)
+
+Victor aprobó los cambios seguros el 2026-10-23. El lockfile se regeneró con npm 11.
+
+- Nivel 1: no hizo falta. Las dependencias de producción ya tenían 0 vulnerabilidades.
+- `npm audit fix`, sin `--force`:
+  - `sharp` 0.35.4 → 0.35.5, con sus binarios `@img/*`. El rango en `package.json` pasa a
+    `^0.35.5`.
+  - `source-map-js` 1.2.1 → 1.2.2.
+  - `postcss-selector-parser` 6.1.4 → 6.1.5. Sigue dentro del rango que admite Tailwind 3.
+- `playwright` 1.63.0 → 1.64.1, con el rango en `^1.64.1`. El `installCommand` de `vercel.json`
+  (`npx playwright install chromium --only-shell`) instala el navegador de esa versión, así que
+  no cambia.
+- Se quitaron `@vercel/analytics` y `@vercel/speed-insights`. Ningún archivo de `templates/`,
+  `scripts/`, `public/` ni `api/` los importa. La plantilla carga
+  `/_vercel/speed-insights/script.js`, que sirve Vercel y no necesita el paquete de npm. Las
+  entradas de la CSP para `vercel-insights.com` se mantienen.
+
+Pendiente, por decisión:
+
+- `braces` 3.0.3 y `postcss-selector-parser` 6.1.5 quedan como riesgo aceptado, limitado al
+  build. Los dos llegan a través de Tailwind 3, que se mantiene porque se decidió usar el CLI v3
+  fijado. No se ejecutan en producción.
+- No se migra a `@google/genai`, porque toca el código de `api/chat-cv.js`.
+
+`npm audit` después de los cambios:
+
+- Dependencias de producción: 0 vulnerabilidades.
+- Árbol completo: 7 (5 altas, 2 moderadas), antes 9. Todas vienen de `braces` y
+  `postcss-selector-parser`.
+
 ### Pasos tras el merge
 
 1. En Vercel: Settings → Build and Deployment → Node.js Version = 24.x, y volver a desplegar.
