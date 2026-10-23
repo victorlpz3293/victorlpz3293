@@ -21,15 +21,13 @@
     "build": "npm run validate && npm run build:context && npm run build:css && npm run build:pdf && npm run build:site && npm run check-claims"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0"
+    "@google/generative-ai": "^0.21.0"
   },
   "devDependencies": {
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
-    "playwright": "^1.63.0",
-    "sharp": "^0.35.4",
+    "playwright": "^1.64.1",
+    "sharp": "^0.35.5",
     "subset-font": "^2.9.0",
     "tailwindcss": "^3.4.19"
   }

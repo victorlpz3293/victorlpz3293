@@ -47,6 +47,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+          # Sin esto, el runner usa la 24.x que tenga en caché, que puede no traer el último parche.
+          check-latest: true
           cache: npm
 
       - name: Instalar dependencias
