@@ -11,10 +11,7 @@ Empecé en la tecnología con un técnico medio en computación y desde 2017 tra
 ## Qué hago hoy
 
 - Lidero el área de TI: planificación del presupuesto, gestión de proveedores tecnológicos y mantenimiento preventivo y correctivo de la infraestructura.
-- Elaboré la política y el protocolo de ciberseguridad y protección de datos de la empresa, alineados con la norma ISO/IEC 27001:2022.
-- Implementé y administro la seguridad perimetral de la red corporativa.
-- Implementé la plataforma de virtualización y los servicios de directorio de la empresa.
-- Centralicé la autenticación de los usuarios mediante inicio de sesión único (SSO).
+- Soy responsable de la seguridad de la información y de la operación de los servidores, la red y las cuentas de usuario.
 
 ## Trayectoria
 
