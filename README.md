@@ -8,6 +8,8 @@
 
 Empecé en la tecnología con un técnico medio en computación y desde 2017 trabajo en TI. Pasé del soporte técnico en servicios de outsourcing a liderar el área de TI de una empresa.
 
+Fundador de [NITSC](https://nicaitsolutionscenter.net)
+
 ## Qué hago hoy
 
 - Lidero el área de TI: planificación del presupuesto, gestión de proveedores tecnológicos y mantenimiento preventivo y correctivo de la infraestructura.
@@ -42,20 +44,14 @@ Empecé en la tecnología con un técnico medio en computación y desde 2017 tra
 
 ## Proyectos
 
-> Mis proyectos de software los desarrollo **con asistencia de IA**. Mi aporte está en el diseño, la infraestructura, el despliegue y la operación.
+> Mis proyectos de software los desarrollo **con asistencia de IA**.
 
 | Proyecto | Qué es | Stack | Estado |
 |---|---|---|---|
-| **Core ERP Suite** | ERP SaaS multi-tenant para MiPyMEs de Nicaragua y Centroamérica, con lógica fiscal y laboral nicaragüense. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, PL/pgSQL) | Desarrollo avanzado, con CI en GitHub Actions |
-| **Core eCommerce Platform** | Plataforma para que pequeños emprendedores creen su propia tienda en línea. | TypeScript, React (TanStack Start), Supabase (PostgreSQL, Auth) | En desarrollo (pausado) |
-| **Variedades Hoannes** | Tienda en línea del negocio familiar de mi esposa: tienda pública, panel de administración y API propia con catálogo, pedidos, cupones y envíos. Los pagos se reciben por depósito o transferencia bancaria y por la app Kash; la integración con Stripe está preparada, pero no activa. | Next.js 16, React 19, Redux Toolkit | En línea |
+| **Variedades Hoannes** | Tienda en línea de un negocio familiar: tienda pública, panel de administración y API propia con catálogo, pedidos, cupones y envíos. Los pagos se reciben por depósito o transferencia bancaria y por la app Kash; la integración con Stripe está preparada, pero no activa. | Next.js 16, React 19, Redux Toolkit | En línea |
 | **Laboratorio de nube privada con OpenStack** | Nube privada con OpenStack desplegado con Kolla-Ansible sobre Ubuntu 24.04, con pfSense como firewall perimetral. Aloja VMs con VitalPBX, un servidor Wowza con OBS y gateway de streaming, y un sitio web en Docker que muestra la transmisión y permite llamadas a extensiones de VitalPBX. Los servicios se publican a Internet solo mediante Cloudflare Tunnel. | OpenStack 2026.1, Kolla-Ansible, Ubuntu 24.04 | En curso |
 
 *Los repositorios de los proyectos son privados.*
-
-## NITSC
-
-**[Nica IT Solutions Center](https://www.nicaitsolutionscenter.net)** — Emprendimiento propio en etapa inicial orientado a soporte, consultoría, outsourcing de TI y desarrollo a medida.
 
 ## Educación superior
 
